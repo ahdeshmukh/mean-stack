@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { MyHeaderComponent } from './ad.header.component';
+import { AdHeaderComponent } from './ad.header.component';
 
 @NgModule({
   imports: [CommonModule],
-  declarations: [MyHeaderComponent],
-  exports: [MyHeaderComponent]
+  declarations: [AdHeaderComponent],
+  exports: [AdHeaderComponent]
 })
-export class MyHeaderModule { }
+export class AdHeaderModule { }

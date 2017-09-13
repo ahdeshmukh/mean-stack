@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
   providers: []
 })
 
-export class MyHeaderComponent {
+export class AdHeaderComponent {
   title = 'My Header';
 }

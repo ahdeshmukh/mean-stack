@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
-import { MyHeaderModule } from './modules/ad-header/ad.header.module'
+import { AdHeaderModule } from './modules/ad-header/ad.header.module'
 import { AdLoginModule } from './modules/ad-login/ad.login.module'
 
 @NgModule({
@@ -12,7 +12,7 @@ import { AdLoginModule } from './modules/ad-login/ad.login.module'
   ],
   imports: [
     BrowserModule,
-    MyHeaderModule,
+    AdHeaderModule,
     AdLoginModule
   ],
   providers: [],

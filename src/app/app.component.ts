@@ -10,7 +10,7 @@ import { UtilityService } from './services/utility/utility.service';
 })
 
 export class AppComponent {
-  title = 'app';
+  title = 'MEAN Stack App';
   current_environment = '';
   constructor(private _utilityService: UtilityService) {}
   ngOnInit() {

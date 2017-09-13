@@ -5,15 +5,22 @@ import { environment } from '../../../environments/environment';
 export class UtilityService {
 
   environment: any;
-  constructor() { }
-
-  getCurrentEnvironment() {
-    return environment;
+  current_env: any;
+  constructor() { 
+    this.current_env = environment;
   }
 
+  /*getCurrentEnvironment() {
+    return environment;
+  }*/
+
   getCurrentEnvironmentName() {
-    let current_env = this.getCurrentEnvironment();
-    return current_env.name || 'NA';
+    //let current_env = this.getCurrentEnvironment();
+    return this.current_env.name || 'NA';
+  }
+
+  getImagesBasePath() {
+    return this.current_env.images_base_path || '';
   }
 
 }

@@ -14,6 +14,6 @@ export class AppComponent {
   current_environment = '';
   constructor(private _utilityService: UtilityService) {}
   ngOnInit() {
-        this.current_environment = this._utilityService.getCurrentEnvironmentName();
-    }
+    this.current_environment = this._utilityService.getCurrentEnvironmentName();
+  }
 }

@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  name: 'DEV'
+  name: 'DEV',
+  images_base_path: 'assets/images/'
 };

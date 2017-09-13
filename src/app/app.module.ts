@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 import { MyHeaderModule } from './modules/ad-header/ad.header.module'
+import { AdLoginModule } from './modules/ad-login/ad.login.module'
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { MyHeaderModule } from './modules/ad-header/ad.header.module'
   ],
   imports: [
     BrowserModule,
-    MyHeaderModule
+    MyHeaderModule,
+    AdLoginModule
   ],
   providers: [],
   bootstrap: [AppComponent]

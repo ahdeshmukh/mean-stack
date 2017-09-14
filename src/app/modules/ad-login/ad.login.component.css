@@ -1,0 +1,16 @@
+.login-form-container {
+    margin: 0 auto;
+    max-width: 500px;
+    height: 250px;
+    background-color:#f1f0f0;
+    margin-top: 30px;
+    border-radius: 4px;
+    padding: 30px 40px;
+}
+
+img.login-angular-logo {
+    width: 120px;
+    height: 120px;
+    display: block;
+    margin: auto;
+}

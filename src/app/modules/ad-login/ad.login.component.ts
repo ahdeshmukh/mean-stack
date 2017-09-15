@@ -11,8 +11,18 @@ import { UtilityService } from '../../services/utility/utility.service';
 
 export class AdLoginComponent {
   images_base_path = '';
+  //showLoginForm = false;
+  private showLoginForm: Boolean = true
+
+  toggleLoginRegistrationForm() {console.log('here');
+    this.showLoginForm = !this.showLoginForm;
+    console.log(this.showLoginForm);
+  }
+  
   constructor(private _utilityService: UtilityService) {}
+  
   ngOnInit() {
     this.images_base_path = this._utilityService.getImagesBasePath();
   }
+
 }

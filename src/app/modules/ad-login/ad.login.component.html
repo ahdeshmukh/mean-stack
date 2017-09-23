@@ -1,27 +1,61 @@
 <img class="img-circle login-angular-logo" src="assets/images/angular.svg"/>
 <div class="login-form-container">
-    <form>
-        <div *ngIf="showLoginForm">
+    <div *ngIf="showLoginForm">
+        <form>
             <div class="form-group">
-                <!--<label for="exampleInputEmail1">Email address</label>-->
                 <div class="input-group">
                     <span class="input-group-addon transparent"><span class="glyphicon glyphicon-envelope text-danger"></span></span>
-                    <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="EMAIL">
+                    <input type="email" class="form-control" name="email" placeholder="Email">
                 </div>
-                <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon transparent"><span class="glyphicon glyphicon-lock text-danger"></span></span>
-                    <input type="password" class="form-control" aria-describedby="passwordHelp" placeholder="PASSWORD">
+                    <input type="password" class="form-control" name="password" placeholder="Password">
                 </div>
             </div>
-            <button type="submit" class="btn btn-danger">Login</button>
-            <a href="#" (click)="toggleLoginRegistrationForm()" class="pull-right">Register</a>
-        </div>
-        <div *ngIf="!showLoginForm">
-            <div>Registration form</div>
-            <a href="#" (click)="toggleLoginRegistrationForm()" class="pull-right">Login</a>
-        </div>
-    </form>
+            <div>
+                <button type="submit" class="btn btn-danger">Login</button>
+                <a href="#" (click)="toggleLoginRegistrationForm()" class="pull-right">Register</a>
+            </div>
+        </form>
+    </div>
+    <div *ngIf="!showLoginForm">
+        <form>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon transparent"><span class="glyphicon glyphicon-user text-danger"></span></span>
+                    <input type="text" class="form-control" name="first-name" placeholder="First Name">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon transparent"><span class="glyphicon glyphicon-user text-danger"></span></span>
+                    <input type="text" class="form-control" name="last-name" placeholder="Last Name">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon transparent"><span class="glyphicon glyphicon-envelope text-danger"></span></span>
+                    <input type="email" class="form-control" name="email" placeholder="Email">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon transparent"><span class="glyphicon glyphicon-lock text-danger"></span></span>
+                    <input type="password" class="form-control" name="password" placeholder="Password">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon transparent"><span class="glyphicon glyphicon-lock text-danger"></span></span>
+                    <input type="password" class="form-control" name="confirm-password" placeholder="Confirm Password">
+                </div>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-danger">Registration</button>
+                <a href="#" (click)="toggleLoginRegistrationForm()" class="pull-right">Login</a>
+            </div>
+         </form>
+    </div>
 </div>

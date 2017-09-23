@@ -14,9 +14,8 @@ export class AdLoginComponent {
   //showLoginForm = false;
   private showLoginForm: Boolean = true
 
-  toggleLoginRegistrationForm() {console.log('here');
+  toggleLoginRegistrationForm() {
     this.showLoginForm = !this.showLoginForm;
-    console.log(this.showLoginForm);
   }
   
   constructor(private _utilityService: UtilityService) {}

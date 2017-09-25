@@ -11,7 +11,6 @@ import { UtilityService } from '../../services/utility/utility.service';
 
 export class AdLoginComponent {
   images_base_path = '';
-  //private registrationFormDisplayed: boolean = false;
   @Input() showRegisterLink: boolean;
   @Output() onShowingRegistrationForm = new EventEmitter<boolean>();
 

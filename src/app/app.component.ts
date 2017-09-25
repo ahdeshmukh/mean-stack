@@ -10,11 +10,11 @@ import { UtilityService } from './services/utility/utility.service';
 })
 
 export class AppComponent {
-  private title: string = 'MEAN Stack App';
-  private current_environment: string = '';
-  private images_base_path: string = '';
-  private showLoginForm: boolean = true;
-  private showRegistrationForm: boolean = false;
+  title: string = 'MEAN Stack App';
+  images_base_path: string = '';
+  current_environment: string = '';
+  showLoginForm: boolean = true;
+  showRegistrationForm: boolean = false;
 
   onShowingRegistrationForm(showRegistrationForm: boolean) {
     this.showRegistrationForm = showRegistrationForm; // can actually set it to true 

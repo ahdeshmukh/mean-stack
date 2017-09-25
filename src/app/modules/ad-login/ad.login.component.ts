@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { UtilityService } from '../../services/utility/utility.service';
 
@@ -11,11 +11,12 @@ import { UtilityService } from '../../services/utility/utility.service';
 
 export class AdLoginComponent {
   images_base_path = '';
-  //showLoginForm = false;
-  private showLoginForm: Boolean = true
+  //private registrationFormDisplayed: boolean = false;
+  @Input() showRegisterLink: boolean;
+  @Output() onShowingRegistrationForm = new EventEmitter<boolean>();
 
-  toggleLoginRegistrationForm() {
-    this.showLoginForm = !this.showLoginForm;
+  showRegistrationForm(showRegistrationForm: boolean) {
+    this.onShowingRegistrationForm.emit(showRegistrationForm);
   }
   
   constructor(private _utilityService: UtilityService) {}

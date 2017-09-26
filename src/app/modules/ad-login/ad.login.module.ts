@@ -3,10 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { AdLoginComponent } from './ad.login.component';
 
-import { AdRegistrationModule } from '../ad-registration/ad.registration.module'
-
 @NgModule({
-  imports: [CommonModule, AdRegistrationModule],
+  imports: [CommonModule],
   declarations: [AdLoginComponent],
   exports: [AdLoginComponent]
 })

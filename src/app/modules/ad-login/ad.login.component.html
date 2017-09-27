@@ -17,3 +17,22 @@
         <a *ngIf="showRegisterLink" href="#" (click)="showRegistrationForm(true)" class="pull-right">Register</a>
     </div>
 </form>
+
+<form [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
+    <div class="form-group">
+        <div class="input-group">
+            <span class="input-group-addon transparent"><span class="glyphicon glyphicon-envelope text-danger"></span></span>
+            <input type="email" class="form-control" formControlName="email" placeholder="Email">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="input-group">
+            <span class="input-group-addon transparent"><span class="glyphicon glyphicon-lock text-danger"></span></span>
+            <input type="password" class="form-control" formControlName="password" placeholder="Password">
+        </div>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-danger">Login</button>
+        <a *ngIf="showRegisterLink" href="#" (click)="showRegistrationForm(true)" class="pull-right">Register</a>
+    </div>
+  </form>

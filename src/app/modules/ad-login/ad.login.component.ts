@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, EmailValidator } from '@angular/forms';
 
 import { UtilityService } from '../../services/utility/utility.service';
 
@@ -21,6 +21,7 @@ export class AdLoginComponent {
   email:string = '';
 
   showRegistrationForm(showRegistrationForm: boolean) {
+    //console.log(this.rForm);
     this.onShowingRegistrationForm.emit(showRegistrationForm);
   }
   
@@ -31,9 +32,9 @@ export class AdLoginComponent {
     });
   }
 
-  addPost(post) {console.log(post);
-    this.password = post.password;
-    this.email = post.email;
+  login(loginForm) {
+    this.password = loginForm.password;
+    this.email = loginForm.email;
   }
   
   ngOnInit() {

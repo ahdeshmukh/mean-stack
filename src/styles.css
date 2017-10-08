@@ -9,3 +9,19 @@ img.login-angular-logo {
     display: block;
     margin: auto;
 }
+
+.form-alert {
+    padding: 5px 0;
+    animation: 1s formAlertAnim forwards;
+}
+
+@keyframes formAlertAnim {
+    from {
+        opacity:0;
+        transform: translateX(-40px);
+    }
+    to {
+        opacity:1;
+        transform: translateX(0);
+    }
+}

@@ -2,12 +2,16 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, EmailValidator } from '@angular/forms';
 
 import { UtilityService } from '../../services/utility/utility.service';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './ad.login.component.html',
   styleUrls: ['./ad.login.component.css'],
-  providers: [UtilityService]
+  providers: [
+    UtilityService,
+    AuthService
+  ]
 })
 
 export class AdLoginComponent {
@@ -25,7 +29,7 @@ export class AdLoginComponent {
     this.onShowingRegistrationForm.emit(showRegistrationForm);
   }
   
-  constructor(private _utilityService: UtilityService, private fb: FormBuilder) {
+  constructor(private _utilityService: UtilityService, private fb: FormBuilder, private _authService: AuthService) {
     this.rForm = fb.group({
       'email' : [null, Validators.required],
       'password' : [null, Validators.required]
@@ -35,6 +39,11 @@ export class AdLoginComponent {
   login(loginForm) {
     this.password = loginForm.password;
     this.email = loginForm.email;
+    this._authService.login(loginForm.email, loginForm.password)
+    .subscribe(
+      (res) => {console.log(res)},
+      (err) => {console.log(err)}
+    );
   }
   
   ngOnInit() {

@@ -4,15 +4,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module'
 
 import { AdLoginModule } from './modules/ad-login/ad.login.module'
 import { AdRegistrationModule } from './modules/ad-registration/ad.registration.module'
-import { AdTodosModule } from './modules/ad-todos/ad.todos.module'
+
 import { AdTodosComponent } from './modules/ad-todos/ad.todos.component'
 
-const appRoutes: Routes = [
-  { path: 'todos', component: AdTodosComponent }
-];
 
 @NgModule({
   declarations: [
@@ -21,10 +19,9 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes),
+    AppRoutingModule,
     AdLoginModule,
-    AdRegistrationModule,
-    AdTodosModule
+    AdRegistrationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
 })
 
 export class AdTodosComponent {
-
+  list1 = 'List 1';
 }

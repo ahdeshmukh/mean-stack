@@ -9,8 +9,6 @@ import { AppRoutingModule } from './app-routing.module'
 import { AdLoginModule } from './modules/ad-login/ad.login.module'
 import { AdRegistrationModule } from './modules/ad-registration/ad.registration.module'
 
-import { AdTodosComponent } from './modules/ad-todos/ad.todos.component'
-
 
 @NgModule({
   declarations: [

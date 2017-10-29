@@ -10,10 +10,6 @@ export class AuthService {
 
   constructor(private http: HttpClient, private _utilityService: UtilityService) { }
 
-  /*login:Observable=any(email, password) {
-
-  }*/
-
   login(email, password): Observable<any> {
     let errors = [];
     if(email) {
@@ -24,11 +20,6 @@ export class AuthService {
     }
 
     if(errors.length > 0) {
-      /*return Observable.create(observer => {
-        let error = new MyError(errors);
-        observer.error(error);
-      });*/
-
       return this._utilityService.returnErrorObservable(errors);
     }
     

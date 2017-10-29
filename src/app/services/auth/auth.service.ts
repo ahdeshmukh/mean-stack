@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs';
 
+import {MyError} from './../../classes/myerror.class';
+
 @Injectable()
 export class AuthService {
 
@@ -27,19 +29,7 @@ export class AuthService {
         observer.error(error);
       });
     }
-
-    return Observable.create(observer => {
-      observer.error(new Error("Just a place holder"));
-    });
     
   }
 
-}
-
-class MyError extends Error {
-  constructor(message) {
-    super();
-    this.name = 'MyError';
-    this.message = message;
-  }
 }

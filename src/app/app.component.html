@@ -11,6 +11,10 @@
     <app-login *ngIf="showLoginForm" [showRegisterLink]="true" (onShowingRegistrationForm)="onShowingRegistrationForm($event)"></app-login>
     <app-registration *ngIf="showRegistrationForm" [showLoginLink]="true" (onShowingLoginForm)="onShowingLoginForm($event)"></app-registration>
   </div>
+
+  <a routerLink="/todos" routerLinkActive="active">Todos</a>
 </div>
 
-<router-outlet *ngIf="1==1"></router-outlet>
+<div *ngIf="1==1">
+  <router-outlet></router-outlet>
+</div>

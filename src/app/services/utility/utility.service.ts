@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import { environment } from '../../../environments/environment';
+import {MyError} from './../../classes/myerror.class';
 
 @Injectable()
 export class UtilityService {
@@ -29,9 +30,9 @@ export class UtilityService {
     return this.current_env.restApi || '';
   }
 
-  returnErrorObservable(errors): Observable<any> {
+  returnErrorObservable(error): Observable<any> {
     return Observable.create(observer => {
-      observer.error(new Error(errors));
+      observer.error(new MyError(error));
     });
   }
 

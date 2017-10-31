@@ -12,16 +12,24 @@ export class AuthService {
 
   login(email, password): Observable<any> {
     let errors = [];
-    if(email) {
+    if(!email) {
       errors.push('Email is not provided');
     }
-    if(password) {
+    if(!password) {
       errors.push('Password is not provided');
     }
 
     if(errors.length > 0) {
       return this._utilityService.returnErrorObservable(errors);
     }
+
+    /*this.http.get('http://localhost:4000/users').subscribe(data => {
+      // Read the result field from the JSON response.
+      console.log(data);
+      let results = data;
+    });*/
+
+    return this.http.get('http://localhost:4000/users');
     
   }
 

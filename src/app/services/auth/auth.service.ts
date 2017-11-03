@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders  } from '@angular/common/http';
+import { RequestOptions } from '@angular/http'
 import { Observable } from 'rxjs';
 
 import { MyError } from './../../classes/myerror.class';
@@ -23,13 +24,10 @@ export class AuthService {
       return this._utilityService.returnErrorObservable(errors);
     }
 
-    /*this.http.get('http://localhost:4000/users').subscribe(data => {
-      // Read the result field from the JSON response.
-      console.log(data);
-      let results = data;
-    });*/
-
-    return this.http.get('http://localhost:4000/users');
+    let credentials = {"email": email, "password": password};
+    let url = 'http://localhost:4000/login';
+    let options = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+    return this.http.post(url, credentials, options);
     
   }
 

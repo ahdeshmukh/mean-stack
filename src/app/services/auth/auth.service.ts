@@ -34,6 +34,7 @@ export class AuthService {
     let options = { "headers": headers };
     
     // https://github.com/angular/angular/issues/7445
+    // https://medium.com/codingthesmartway-com-blog/angular-4-3-httpclient-accessing-rest-web-services-with-angular-2305b8fd654b
 
     return this.http.post(url, data, options);
     

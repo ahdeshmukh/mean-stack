@@ -24,10 +24,18 @@ export class AuthService {
       return this._utilityService.returnErrorObservable(errors);
     }
 
-    let credentials = {"email": email, "password": password};
     let url = 'http://localhost:4000/login';
-    let options = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-    return this.http.post(url, credentials, options);
+    let data = {"email": email, "password": password};
+    let headers =  new HttpHeaders({ 'Content-Type': 'application/json' });
+    
+    headers.append('Accept', 'application/json');
+    headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, DELETE, PUT');
+    
+    let options = { "headers": headers };
+    
+    // https://github.com/angular/angular/issues/7445
+
+    return this.http.post(url, data, options);
     
   }
 

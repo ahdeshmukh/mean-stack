@@ -7,5 +7,5 @@ export const environment = {
   production: false,
   name: 'DEV',
   images_base_path: 'assets/images/',
-  restApi: 'localhost:4000'
+  restApi: 'http://localhost:4000'
 };

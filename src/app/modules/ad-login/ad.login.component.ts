@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, EmailValidator } from '@angular/for
 
 import { UtilityService } from '../../services/utility/utility.service';
 import { AuthService } from '../../services/auth/auth.service';
+import { AdHttpService } from '../../services/ad-http/ad.http.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,8 @@ import { AuthService } from '../../services/auth/auth.service';
   styleUrls: ['./ad.login.component.css'],
   providers: [
     UtilityService,
-    AuthService
+    AuthService,
+    AdHttpService
   ]
 })
 

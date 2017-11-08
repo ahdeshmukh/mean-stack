@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import {MyError} from './../../classes/myerror.class';
+import { MyError } from './../../classes/myerror.class';
 
 @Injectable()
 export class UtilityService {

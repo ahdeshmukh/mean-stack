@@ -25,6 +25,8 @@ export class AuthService {
     }
     
     let credentials = {"email": email, "password": password};
+    
+    //todo: if there is an error in login, maybe throw an error back. need to think through this
     return this.adHttp.post('login', credentials);
     
   }

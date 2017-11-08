@@ -1,20 +1,20 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, EmailValidator } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
 
 import { UtilityService } from '../../services/utility/utility.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { AdHttpService } from '../../services/ad-http/ad.http.service';
+import { AdToastrService } from '../../services/ad-toastr/ad.toastr.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './ad.login.component.html',
   styleUrls: ['./ad.login.component.css'],
   providers: [
-    ToastrService,
     UtilityService,
     AuthService,
-    AdHttpService
+    AdHttpService,
+    AdToastrService
   ]
 })
 
@@ -33,7 +33,7 @@ export class AdLoginComponent {
     this.onShowingRegistrationForm.emit(showRegistrationForm);
   }
   
-  constructor(private _utilityService: UtilityService, private fb: FormBuilder, private _authService: AuthService, private toastr: ToastrService) {
+  constructor(private _utilityService: UtilityService, private fb: FormBuilder, private _authService: AuthService, private adToastr: AdToastrService) {
     this.rForm = fb.group({
       'email' : [null, Validators.required],
       'password' : [null, Validators.required]
@@ -45,8 +45,14 @@ export class AdLoginComponent {
     this.email = loginForm.email;
     this._authService.login(loginForm.email, loginForm.password)
     .subscribe(
-      (res) => {console.log(res);this.toastr.success('Hello world!', 'Toastr fun!');},
-      (err) => {console.log(err)}
+      (result) => {
+        if(!result.success) {
+           this.adToastr.error('Invalid email or password. Please try again.');
+        } else {
+          this.adToastr.success('Logged in successfully. Welcome ' + result.data.first_name + ' ' + result.data.last_name);
+        }
+      },
+      (error) => {console.log(error);}
     );
   }
   

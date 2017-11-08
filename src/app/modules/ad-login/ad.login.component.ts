@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, EmailValidator } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 import { UtilityService } from '../../services/utility/utility.service';
 import { AuthService } from '../../services/auth/auth.service';
@@ -10,6 +11,7 @@ import { AdHttpService } from '../../services/ad-http/ad.http.service';
   templateUrl: './ad.login.component.html',
   styleUrls: ['./ad.login.component.css'],
   providers: [
+    ToastrService,
     UtilityService,
     AuthService,
     AdHttpService
@@ -31,7 +33,7 @@ export class AdLoginComponent {
     this.onShowingRegistrationForm.emit(showRegistrationForm);
   }
   
-  constructor(private _utilityService: UtilityService, private fb: FormBuilder, private _authService: AuthService) {
+  constructor(private _utilityService: UtilityService, private fb: FormBuilder, private _authService: AuthService, private toastr: ToastrService) {
     this.rForm = fb.group({
       'email' : [null, Validators.required],
       'password' : [null, Validators.required]
@@ -43,7 +45,7 @@ export class AdLoginComponent {
     this.email = loginForm.email;
     this._authService.login(loginForm.email, loginForm.password)
     .subscribe(
-      (res) => {console.log(res)},
+      (res) => {console.log(res);this.toastr.success('Hello world!', 'Toastr fun!');},
       (err) => {console.log(err)}
     );
   }

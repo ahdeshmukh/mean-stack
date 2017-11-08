@@ -23,7 +23,7 @@ export class AuthService {
     if(errors.length > 0) {
       return this._utilityService.returnErrorObservable(errors);
     }
-
+    
     let credentials = {"email": email, "password": password};
     return this.adHttp.post('login', credentials);
     

@@ -17,6 +17,9 @@ export class AdToastrService {
     if (!title) {
       let title = 'Error';
     }
+    if (!message) {
+      let message = 'Something went wrong.';
+    }
     this.toastr.error(message, title, data);
   }
 

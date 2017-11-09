@@ -1,6 +1,6 @@
 <!--The whole content below can be removed with the new code.-->
 
-<div *ngIf="1==1">
+<div *ngIf="!isUserLoggedIn">
   <div style="text-align:center">
     <h1>Welcome to {{title}}!!</h1>
     <h4>Current Environment - {{current_environment}}</h4>
@@ -15,6 +15,6 @@
   <a routerLink="/todos" routerLinkActive="active">Todos</a>
 </div>
 
-<div *ngIf="1==1">
+<div *ngIf="isUserLoggedIn">
   <router-outlet></router-outlet>
 </div>

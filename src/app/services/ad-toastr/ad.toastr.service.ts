@@ -7,20 +7,15 @@ export class AdToastrService {
   constructor(private toastr: ToastrService) { }
 
   success(message?: string, title?: string, data?) {
-    if (!title) {
-      let title = 'Success';
-    }
-    this.toastr.success(message, title, data);
+    let toastrTitle = (title) ? title : 'Success';
+    let toastrMessage = message;
+    this.toastr.success(toastrMessage, toastrTitle, data);
   }
 
   error(message?: string, title?: string, data?) {
-    if (!title) {
-      let title = 'Error';
-    }
-    if (!message) {
-      let message = 'Something went wrong.';
-    }
-    this.toastr.error(message, title, data);
+    let toastrTitle = (title) ? title : 'Error';
+    let toastrMessage = (message) ? message : 'Something went wrong';
+    this.toastr.error(toastrMessage, toastrTitle, data);
   }
 
 }

@@ -6,10 +6,12 @@ import { MyError } from './../../classes/myerror.class';
 import { UtilityService } from './../utility/utility.service';
 import { AdHttpService } from '../ad-http/ad.http.service';
 
+import { User } from './../../classes/user.class';
+
 @Injectable()
 export class AuthService {
 
-  constructor(private adHttp: AdHttpService, private _utilityService: UtilityService) { }
+  constructor(private adHttp: AdHttpService, private utilityService: UtilityService) { }
 
   login(email, password): Observable<any> {
     let errors = [];
@@ -21,13 +23,16 @@ export class AuthService {
     }
 
     if(errors.length > 0) {
-      return this._utilityService.returnErrorObservable(errors);
+      return this.utilityService.returnErrorObservable(errors);
     }
     
     let credentials = {"email": email, "password": password};
     
-    //todo: if there is an error in login, maybe throw an error back. need to think through this
-    return this.adHttp.post('login', credentials);
+    return this.adHttp.post('login', credentials)
+    .do((result) => {
+      let user = new User(result.data);
+      localStorage.setItem('currentUser', JSON.stringify({user}));
+    });
     
   }
 

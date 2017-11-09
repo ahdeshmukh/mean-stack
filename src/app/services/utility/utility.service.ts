@@ -36,4 +36,10 @@ export class UtilityService {
     });
   }
 
+  returnCompleteObservable(value): Observable<any> {
+    return Observable.create(observer => {
+      observer.complete(value);
+    });
+  }
+
 }

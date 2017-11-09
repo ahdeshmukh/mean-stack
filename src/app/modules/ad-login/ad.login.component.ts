@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, EmailValidator } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { UtilityService } from '../../services/utility/utility.service';
 import { AuthService } from '../../services/auth/auth.service';
@@ -35,7 +36,7 @@ export class AdLoginComponent {
     this.onShowingRegistrationForm.emit(showRegistrationForm);
   }
   
-  constructor(private _utilityService: UtilityService, private fb: FormBuilder, private _authService: AuthService, private adToastr: AdToastrService) {
+  constructor(private utilityService: UtilityService, private fb: FormBuilder, private authService: AuthService, private adToastr: AdToastrService, private router: Router) {
     this.rForm = fb.group({
       'email' : [null, Validators.required],
       'password' : [null, Validators.required]
@@ -45,7 +46,7 @@ export class AdLoginComponent {
   login(loginForm) {
     this.password = loginForm.password;
     this.email = loginForm.email;
-    this._authService.login(loginForm.email, loginForm.password)
+    this.authService.login(loginForm.email, loginForm.password)
     .subscribe(
       (result) => {
         if(!result.success) {
@@ -55,6 +56,8 @@ export class AdLoginComponent {
           // move this part to auth service
           let user = new User(result.data);
           localStorage.setItem('currentUser', JSON.stringify({user}));
+          //
+          this.router.navigateByUrl('todos');
         }
       },
       (error) => {
@@ -65,7 +68,7 @@ export class AdLoginComponent {
   }
   
   ngOnInit() {
-    this.images_base_path = this._utilityService.getImagesBasePath();
+    this.images_base_path = this.utilityService.getImagesBasePath();
   }
 
 }

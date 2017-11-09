@@ -31,11 +31,11 @@ export class AppComponent {
     this.showRegistrationForm = false;
   }
   
-  constructor(private _utilityService: UtilityService, private _userService: UserService) {}
+  constructor(private utilityService: UtilityService, private userService: UserService) {}
   
   ngOnInit() {
-    this.current_environment = this._utilityService.getCurrentEnvironmentName();
-    this.images_base_path = this._utilityService.getImagesBasePath();
-    this.isUserLoggedIn = this._userService.isLoggedIn();
+    this.current_environment = this.utilityService.getCurrentEnvironmentName();
+    this.images_base_path = this.utilityService.getImagesBasePath();
+    this.isUserLoggedIn = this.userService.isLoggedIn();
   }
 }

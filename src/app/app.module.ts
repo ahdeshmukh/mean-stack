@@ -8,9 +8,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
 
 import { AppRoutingModule } from './app-routing.module'
-import { AdLoginModule } from './modules/ad-login/ad.login.module'
-import { AdRegistrationModule } from './modules/ad-registration/ad.registration.module'
-import { AdTodosModule } from './modules/ad-todos/ad.todos.module'
+import { AdTodosModule } from './modules/ad-todos/ad.todos.module';
+import { AdHomeModule } from './modules/ad-home/ad.home.module';
 
 
 @NgModule({
@@ -22,10 +21,9 @@ import { AdTodosModule } from './modules/ad-todos/ad.todos.module'
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    AdLoginModule,
-    AdRegistrationModule,
     AdTodosModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AdHomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

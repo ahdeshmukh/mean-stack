@@ -1,8 +1,10 @@
-import { NgModule }              from '@angular/core';
-import { RouterModule, Routes }  from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+
+import { AdHomeComponent } from './modules/ad-home/ad.home.component';
 
 const appRoutes: Routes = [
-  { path: '',   redirectTo: '/', pathMatch: 'full' },
+  { path: '', pathMatch: 'full', component: AdHomeComponent},
 ];
 
 @NgModule({

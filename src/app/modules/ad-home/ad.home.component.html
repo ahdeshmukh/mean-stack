@@ -1,0 +1,10 @@
+<div style="text-align:center">
+  <h1>Welcome to {{title}}!!</h1>
+  <h4>Current Environment - {{current_environment}}</h4>
+</div>
+
+<img class="img-circle login-angular-logo" src="assets/images/angular.svg"/>
+<div class="login-registration-form-container">
+  <app-login *ngIf="showLoginForm" [showRegisterLink]="true" (onShowingRegistrationForm)="onShowingRegistrationForm($event)"></app-login>
+  <app-registration *ngIf="showRegistrationForm" [showLoginLink]="true" (onShowingLoginForm)="onShowingLoginForm($event)"></app-registration>
+</div>

@@ -29,9 +29,12 @@ export class AuthService {
     let credentials = {"email": email, "password": password};
     
     return this.adHttp.post('login', credentials)
-    .do((result) => {
-      let user = new User(result.data);
-      localStorage.setItem('currentUser', JSON.stringify({user}));
+    .map((result) => {//console.log(result);
+      if(result && result.success) {
+        let user = new User(result.data);
+        localStorage.setItem('currentUser', JSON.stringify({user}));
+      }
+      return result;
     });
     
   }

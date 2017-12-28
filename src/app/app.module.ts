@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { AsyncLocalStorageModule } from 'angular-async-local-storage';
 
 import { AppComponent } from './app.component';
 
@@ -20,6 +21,7 @@ import { AdHomeModule } from './modules/ad-home/ad.home.module';
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    AsyncLocalStorageModule,
     ToastrModule.forRoot(),
     AdTodosModule,
     AppRoutingModule,

@@ -4,10 +4,14 @@ export class User {
     private email: string;
     private id: string;
     
-    constructor(data) {
-        this.firstName = data.first_name;
-        this.lastName = data.last_name;
-        this.email = data.email;
-        this.id = data._id;
+    constructor(id, email, firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.id = id;
+    }
+
+    getUserId() {
+        return this.id;
     }
 }

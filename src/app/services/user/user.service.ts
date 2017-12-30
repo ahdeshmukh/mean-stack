@@ -23,13 +23,12 @@ export class UserService {
     return this.localStorage.getItem('currentUser')
     .map((currentUser: any) => {
       let isLoggedIn = false;
-      let user = new User(currentUser.id, currentUser.email, currentUser.firstName, currentUser.lastName);
-      if(user) {
-        const id = user.getUserId();
-        if(id) {
-          isLoggedIn = true;
+      if(currentUser) {
+        let user = new User(currentUser.id, currentUser.email, currentUser.firstName, currentUser.lastName);
+          if(user && user.getUserId()) {
+            isLoggedIn = true;
+          }
         }
-      }
       return isLoggedIn;
     });
 

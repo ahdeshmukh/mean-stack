@@ -35,7 +35,7 @@ export class AuthService {
       if(result && result.success && result.data) {
         let user = new User(result.data._id, result.data.email, result.data.first_name, result.data.last_name);
         this.localStorage.setItem('currentUser', user).subscribe(() => {
-          this.router.navigateByUrl('todos');
+          //this.router.navigateByUrl('todos');
         })
       }
       return result;

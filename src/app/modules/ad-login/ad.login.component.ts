@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, EmailValidator } from '@angular/forms';
-import { Router } from '@angular/router';
+
 
 import { UtilityService } from '../../services/utility/utility.service';
 import { AuthService } from '../../services/auth/auth.service';
@@ -34,7 +34,7 @@ export class AdLoginComponent {
     this.onShowingRegistrationForm.emit(showRegistrationForm);
   }
   
-  constructor(private utilityService: UtilityService, private fb: FormBuilder, private authService: AuthService, private adToastr: AdToastrService, private router: Router) {
+  constructor(private utilityService: UtilityService, private fb: FormBuilder, private authService: AuthService, private adToastr: AdToastrService) {
     this.rForm = fb.group({
       'email' : [null, Validators.required],
       'password' : [null, Validators.required]
@@ -51,7 +51,7 @@ export class AdLoginComponent {
            this.adToastr.error('Invalid email or password. Please try again.');
         } else {
           this.adToastr.success('Logged in successfully. Welcome ' + result.data.first_name + ' ' + result.data.last_name);
-          this.router.navigateByUrl('todos');
+          
         }
       },
       (error) => {

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { RequestOptions } from '@angular/http'
 import { Observable } from 'rxjs';
 import { AsyncLocalStorage } from 'angular-async-local-storage';
+import { Router } from '@angular/router';
 
 import { MyError } from './../../classes/myerror.class';
 import { UtilityService } from './../utility/utility.service';
@@ -12,7 +13,7 @@ import { User } from './../../classes/user.class';
 @Injectable()
 export class AuthService {
 
-  constructor(private adHttp: AdHttpService, private utilityService: UtilityService, protected localStorage: AsyncLocalStorage) { }
+  constructor(private adHttp: AdHttpService, private utilityService: UtilityService, protected localStorage: AsyncLocalStorage, private router: Router) { }
 
   login(email, password): Observable<any> {
     let errors = [];
@@ -34,11 +35,7 @@ export class AuthService {
       if(result && result.success && result.data) {
         let user = new User(result.data._id, result.data.email, result.data.first_name, result.data.last_name);
         this.localStorage.setItem('currentUser', user).subscribe(() => {
-          console.log('Local storage set');
-          this.localStorage.getItem('currentUser')
-          .subscribe((currentUser) => {
-            console.log(currentUser);
-          });
+          this.router.navigateByUrl('todos');
         })
       }
       return result;

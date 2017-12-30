@@ -7,19 +7,9 @@ import { User } from './../../classes/user.class';
 export class UserService {
 
   private currentUser;
-  constructor(protected localStorage: AsyncLocalStorage) {
-    /*let currentUser = localStorage.getItem('currentUser');
-    try {
-      this.currentUser = JSON.parse(currentUser);
-    } catch(e) {
-      this.currentUser = currentUser;
-    }*/
-  }
+  constructor(protected localStorage: AsyncLocalStorage) { }
 
-  isLoggedIn():Observable<boolean> {//return true;
-    /*let user = (this.currentUser && this.currentUser.user) ? this.currentUser.user : null;
-    return (user && user.id) ? true : false;*/
-
+  isLoggedIn():Observable<boolean> {
     return this.localStorage.getItem('currentUser')
     .map((currentUser: any) => {
       let isLoggedIn = false;

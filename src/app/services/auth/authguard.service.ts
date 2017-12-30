@@ -9,20 +9,12 @@ export class AuthguardService implements CanActivate {
   constructor(private router: Router, private userService: UserService) { }
 
   canActivate(route:ActivatedRouteSnapshot, state:RouterStateSnapshot):Observable<boolean>|boolean {
-    /*let isUserLoggedIn:boolean = this.userService.isLoggedIn();
-    if(!isUserLoggedIn) {
-        this.router.navigate(['/']);
-    }
-    return isUserLoggedIn;*/
-
-    return this.userService.isLoggedIn().map((isLoggedIn) => {console.log(isLoggedIn);
+    return this.userService.isLoggedIn().map((isLoggedIn) => {
       if(!isLoggedIn) {
         this.router.navigate(['/']);
       }
       return isLoggedIn;
     });
-
-    //this.userService.isLoggedIn()
   }
 
 }

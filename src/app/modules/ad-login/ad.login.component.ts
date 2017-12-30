@@ -30,7 +30,6 @@ export class AdLoginComponent {
   email:string = '';
 
   showRegistrationForm(showRegistrationForm: boolean) {
-    //console.log(this.rForm);
     this.onShowingRegistrationForm.emit(showRegistrationForm);
   }
   

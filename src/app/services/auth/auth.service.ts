@@ -30,8 +30,7 @@ export class AuthService {
     
     let credentials = {"email": email, "password": password};
     
-    return this.adHttp.post('login', credentials)
-    .map((result) => {
+    return this.adHttp.post('login', credentials).map((result) => {
       if(result && result.success && result.data) {
         let user = new User(result.data._id, result.data.email, result.data.first_name, result.data.last_name);
         this.localStorage.setItem('currentUser', user).subscribe(() => {
@@ -40,7 +39,14 @@ export class AuthService {
       }
       return result;
     });
-    
+  }
+
+  logout(): Observable<boolean> {
+    return this.localStorage.removeItem('currentUser').map((success) => {
+      return true
+    },(error) => {
+      return false
+    });
   }
 
 }

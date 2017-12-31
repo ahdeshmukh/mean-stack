@@ -1,13 +1,17 @@
-<!--<div class="container">
-    <h1>coming from Header module - {{title}}</h1>
-    <div class="pull-right">Log Out</div>
-</div>-->
-
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse navbar-static-top">
   <div class="container">
     <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
       <div class="navbar-brand" href="#">Welcome {{user.firstName}} {{user.lastName}}</div>
     </div>
-    <div class="navbar-brand navbar-right" style="color:white;">Log Out</div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Log out</a></li>
+      </ul>
+    </div>
   </div>
 </nav>

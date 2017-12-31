@@ -10,30 +10,26 @@ export class UserService {
   constructor(protected localStorage: AsyncLocalStorage) { }
 
   getCurrentUser():Observable<User> {
-    return this.localStorage.getItem('currentUser')
-    .map((currentUser: any) => {
+    return this.localStorage.getItem('currentUser').map((currentUser: any) => {
       if(currentUser && currentUser.id && currentUser.email) {
         let user = new User(currentUser.id, currentUser.email, currentUser.firstName, currentUser.lastName);
         return user;
       }
       return null;
-    })
+    });
   }
   
   isLoggedIn():Observable<boolean> {
-    return this.localStorage.getItem('currentUser')
-    .map((currentUser: any) => {
+    return this.getCurrentUser().map((currentUser: any) => {
       let isLoggedIn = false;
       if(currentUser) {
         let user = new User(currentUser.id, currentUser.email, currentUser.firstName, currentUser.lastName);
-          if(user && user.getUserId()) {
-            isLoggedIn = true;
-          }
+        if(user && user.getUserId()) {
+          isLoggedIn = true;
         }
+      }
       return isLoggedIn;
     });
-
-
   }
 
 }

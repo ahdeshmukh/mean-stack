@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
  
 import { AdTodosComponent } from './ad.todos.component';
-import { AuthguardService } from '../../services/auth/authguard.service';
+import { AuthGuardService } from '../../services/auth/auth.guard.service';
 import { UserService } from '../../services/user/user.service';
  
 const todosRoutes: Routes = [
-  { path: 'todos',  component: AdTodosComponent, canActivate:[AuthguardService] }
+  { path: 'todos',  component: AdTodosComponent, canActivate:[AuthGuardService] }
 ];
  
 @NgModule({
@@ -17,7 +17,7 @@ const todosRoutes: Routes = [
     RouterModule
   ],
   providers: [
-    AuthguardService,
+    AuthGuardService,
     UserService
   ]
 })

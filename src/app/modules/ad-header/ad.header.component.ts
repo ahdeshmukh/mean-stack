@@ -11,13 +11,16 @@ import { UserService } from '../../services/user/user.service';
 
 export class AdHeaderComponent {
   title = 'My Header';
-  user = {};
+  firstName = '';
+  lastName = '';
 
   constructor(private userService: UserService) {}
 
   ngOnInit() {
     this.userService.getCurrentUser().subscribe((user) => {
-      this.user = user;
-    })
+      this.firstName = user.getUserFirstName();
+      this.lastName = user.getUserLastName();
+    });
   }
+
 }

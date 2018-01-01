@@ -14,4 +14,11 @@ export class User {
     getUserId() {
         return this.id;
     }
+    getUserFirstName() {
+        return (this.firstName) ? this.firstName: '';
+    }
+    getUserLastName() {
+        return (this.lastName) ? this.lastName: '';
+    }
+
 }

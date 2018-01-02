@@ -3,6 +3,20 @@ body {
     background-color: #f1f0f0 !important;
 }
 
+.navbar-inverse {
+    background-color: #961c1c !important;
+    border-color: #961c1c !important;
+}
+
+.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav>li>a {
+    color: #fff !important;
+}
+
+ul.nav a:hover { 
+    color: #961c1c !important;
+    background-color: #fff !important;
+}
+
 img.login-angular-logo {
     width: 120px;
     height: 120px;

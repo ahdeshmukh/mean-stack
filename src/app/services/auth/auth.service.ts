@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 import { MyError } from './../../classes/myerror.class';
 import { UtilityService } from './../utility/utility.service';
 import { AdHttpService } from '../ad-http/ad.http.service';
-
 import { User } from './../../classes/user.class';
 
 @Injectable()

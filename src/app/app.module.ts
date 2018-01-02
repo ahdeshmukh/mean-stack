@@ -12,6 +12,10 @@ import { AppRoutingModule } from './app-routing.module'
 import { AdTodosModule } from './modules/ad-todos/ad.todos.module';
 import { AdHomeModule } from './modules/ad-home/ad.home.module';
 
+//https://medium.com/@MatheusCAS/injecting-a-service-into-another-service-in-angular-3b253df5c21
+import { UtilityService } from './services/utility/utility.service';
+import { AdHttpService } from './services/ad-http/ad.http.service';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +31,10 @@ import { AdHomeModule } from './modules/ad-home/ad.home.module';
     AppRoutingModule,
     AdHomeModule
   ],
-  providers: [],
+  providers: [
+    UtilityService,
+    AdHttpService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,16 +1,16 @@
 <div class="row">
   <div class="col-sm-4">
-    <div class="circle-text xyz">
+    <div (click)="getTasksbyStatus('new')" class="circle-text xyz">
       <div>{{newTasksCount}}</div>
     </div>
   </div>
   <div class="col-sm-4">
-    <div class="circle-text">
+    <div (click)="getTasksbyStatus('in_progress')" class="circle-text">
       <div>{{inProgressTasksCount}}</div>
     </div>
   </div>
   <div class="col-sm-4">
-    <div class="circle-text">
+    <div (click)="getTasksbyStatus('complete')" class="circle-text">
       <div>{{completedTasksCount}}</div>
     </div>
   </div>

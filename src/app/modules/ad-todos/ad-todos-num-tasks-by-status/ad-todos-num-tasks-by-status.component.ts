@@ -54,5 +54,9 @@ export class AdTodosNumTasksByStatusComponent {
 
   }
 
+  getTasksbyStatus(status) {
+    console.log(status);
+  }
+
 
 }

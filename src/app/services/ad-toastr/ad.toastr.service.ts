@@ -1,3 +1,5 @@
+// added some options to ToastrModule.forRoot in AppModule to keep only 1 toastr active at a time
+
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 

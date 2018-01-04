@@ -22,6 +22,7 @@ import { UserService } from '../../services/user/user.service';
 
 export class AdLoginComponent {
   images_base_path = '';
+  loggingInProgress: boolean = false;
   @Input() showRegisterLink: boolean;
   @Output() onShowingRegistrationForm = new EventEmitter<boolean>();
 
@@ -48,7 +49,9 @@ export class AdLoginComponent {
   }
 
   login(loginForm) {
-    this.password = loginForm.password;
+    this.loggingInProgress = true;
+	
+	this.password = loginForm.password;
     this.email = loginForm.email;
     this.authService.login(loginForm.email, loginForm.password)
     .subscribe(
@@ -61,9 +64,11 @@ export class AdLoginComponent {
             this.router.navigateByUrl('todos');
           });
         }
+		this.loggingInProgress = false;
       },
       (error) => {
         this.adToastr.error();
+		this.loggingInProgress = false;
       }
     );
   }

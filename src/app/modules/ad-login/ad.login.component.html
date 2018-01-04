@@ -15,7 +15,7 @@
         </div>
     </div>
     <div>
-        <button type="submit" class="btn btn-danger" [disabled]="!rForm.valid">Login</button>
+        <button type="submit" class="btn btn-danger" [disabled]="(!rForm.valid || loggingInProgress)"><span>{{(loggingInProgress) ? "Logging In...": "Login"}}</span></button>
         <a *ngIf="showRegisterLink" href="#" (click)="showRegistrationForm(true)" class="pull-right">Register</a>
     </div>
 </form>

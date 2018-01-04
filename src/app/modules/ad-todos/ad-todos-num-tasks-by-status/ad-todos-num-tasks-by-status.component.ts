@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import * as _ from 'lodash';
 
 import { UserService } from '../../../services/user/user.service';
+import { AdTodosService } from '../ad-todos.service'
 
 
 @Component({
@@ -16,7 +17,8 @@ export class AdTodosNumTasksByStatusComponent {
   inProgressTasksCount = 0;
   completedTasksCount = 0;
 
-  constructor(private userService: UserService) {}
+
+  constructor(private userService: UserService, private adTodosService: AdTodosService) {}
 
     
   ngOnInit() {
@@ -55,7 +57,7 @@ export class AdTodosNumTasksByStatusComponent {
   }
 
   getTasksbyStatus(status) {
-    console.log(status);
+    this.adTodosService.getTodosListByStatus(status);
   }
 
 

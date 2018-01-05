@@ -54,6 +54,18 @@ export class AdTodosNumTasksByStatusComponent {
       });
     });
 
+    this.adTodosService.taskCountForNewJobsObs.subscribe(() => {
+      this.newTasksCount++;
+    });
+
+    this.adTodosService.taskCountForInProgressJobsObs.subscribe(() => {
+      this.inProgressTasksCount++;
+    });
+
+    this.adTodosService.taskCountForCompletedJobsObs.subscribe(() => {
+      this.completedTasksCount++;
+    });
+
   }
 
   getTasksbyStatus(status) {

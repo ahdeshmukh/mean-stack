@@ -20,4 +20,17 @@ export class AdTodosTasksListComponent {
       this.tasksListStatus = tasksListStatus;
     });
   }
+
+  addNewTask() {
+    this.adTodosService.incrementTaskCountForNewJobs();
+  }
+  
+  changeTaskStatusToInProgress() {
+    this.adTodosService.incrementTaskCountForInProgressJobs();
+  }
+
+  changeTaskStatusToComplete() {
+    this.adTodosService.incrementTaskCountForCompletedJobs();
+  }
+
 }

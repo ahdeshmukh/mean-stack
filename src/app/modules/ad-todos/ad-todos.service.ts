@@ -4,12 +4,15 @@
 
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
+
+import { UserService } from '../../services/user/user.service';
 
 @Injectable()
 export class AdTodosService {
 
-    private todosListStatus = new BehaviorSubject<string>('new');
-    currentTodosListStatus = this.todosListStatus.asObservable();
+    /*private todosListStatus = new BehaviorSubject<string>('new');
+    currentTodosListStatus = this.todosListStatus.asObservable();*/
 
     private taskCountForNewJobs = new BehaviorSubject(0);
     taskCountForNewJobsObs = this.taskCountForNewJobs.asObservable();
@@ -20,10 +23,11 @@ export class AdTodosService {
     private taskCountForCompletedJobs = new BehaviorSubject(0);
     taskCountForCompletedJobsObs = this.taskCountForCompletedJobs.asObservable();
     
-    constructor() {}
+    constructor(private userService: UserService) {}
 
-    getTodosListByStatus(status: string) {
-      this.todosListStatus.next(status);
+    getTodosListByStatus(status: string, userId: string):Observable<any> {
+     //this.todosListStatus.next(status);
+     return this.userService.getUserTasksByStatus(status, userId);
     }
 
     incrementTaskCountForNewJobs() {

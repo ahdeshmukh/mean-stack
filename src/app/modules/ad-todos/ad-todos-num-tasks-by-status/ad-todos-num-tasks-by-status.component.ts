@@ -68,8 +68,10 @@ export class AdTodosNumTasksByStatusComponent {
 
   }
 
+  /* revisit this later, most likely this is not needed any more */
   getTasksbyStatus(status) {
-    this.adTodosService.getTodosListByStatus(status);
+    return true;
+    //this.adTodosService.getTodosListByStatus(status);
   }
 
 

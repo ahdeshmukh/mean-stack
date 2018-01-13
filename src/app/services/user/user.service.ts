@@ -65,4 +65,39 @@ export class UserService {
     }
   }
 
+  getUserTasksByStatus(status: string, uid: string): Observable<any> {
+    let user_id = uid;
+    let task_status = status;
+    
+    if(!task_status) {
+      task_status = 'new';
+    }
+    if(!user_id) {
+      return this.getCurrentUser().map((currentUser: any) => {
+        if(currentUser) {
+          user_id = currentUser.getUserId();
+          if(!user_id) {
+            return this.utilityService.returnErrorObservable('User Id is not provided');
+          } else {
+            return this.adHttpService.get('get-users-tasks-list-by-status/'+user_id+'/'+task_status).map((result) => {
+              let tasksData = []
+              if(result && result.success && result.data) {
+                tasksData = result.data;
+              }
+              return tasksData;
+            });
+          }
+        }
+      });
+    } else {
+      return this.adHttpService.get('get-users-tasks-list-by-status/'+user_id+'/'+task_status).map((result) => {
+        let tasksData = []
+        if(result && result.success && result.data) {
+          tasksData = result.data;
+        }
+        return tasksData;
+      });
+    }
+  }
+
 }

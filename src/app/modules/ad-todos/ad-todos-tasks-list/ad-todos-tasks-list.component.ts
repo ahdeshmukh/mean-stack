@@ -1,5 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 
+import { UserService } from '../../../services/user/user.service';
 import { AdTodosService } from '../ad-todos.service'
 
 @Component({
@@ -10,14 +11,25 @@ import { AdTodosService } from '../ad-todos.service'
 })
 
 export class AdTodosTasksListComponent {
-	tasksList = 'My Task List Status';
+	tasksList = [];
   tasksListStatus: string;
 
-  constructor(private adTodosService: AdTodosService) {}
+  constructor(private adTodosService: AdTodosService, private userService: UserService) {}
 
   ngOnInit() {
-    this.adTodosService.currentTodosListStatus.subscribe((tasksListStatus) => {
+    /*this.adTodosService.currentTodosListStatus.subscribe((tasksListStatus) => {
       this.tasksListStatus = tasksListStatus;
+    });*/
+
+    this.userService.getCurrentUser().subscribe((user) => {
+      let user_id = user.getUserId();
+
+      this.userService.getUserTasksByStatus(this.tasksListStatus, user_id).subscribe((tasks) => {
+        this.tasksList = tasks;
+        console.log(this.tasksList);
+      }, (err) => {
+        console.log(err);
+      });
     });
   }
 

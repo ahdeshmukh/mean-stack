@@ -11,8 +11,9 @@ import { AdTodosService } from '../ad-todos.service'
 })
 
 export class AdTodosTasksListComponent {
-	tasksList = [];
+	tasksList: any[] = [];
   tasksListStatus: string;
+  p: number = 1;
 
   constructor(private adTodosService: AdTodosService, private userService: UserService) {}
 
@@ -43,6 +44,16 @@ export class AdTodosTasksListComponent {
 
   changeTaskStatusToComplete() {
     this.adTodosService.incrementTaskCountForCompletedJobs();
+  }
+
+  confirmStatusChange(status) {
+    if(status == 'in_progress') {
+      this.adTodosService.incrementTaskCountForInProgressJobs();
+    }
+  }
+
+  changeStatusClicked(this) {
+    console.log(this);
   }
 
 }

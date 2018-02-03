@@ -7,6 +7,8 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 
 import { UserService } from '../../services/user/user.service';
+import { AdHttpService } from '../../services/ad-http/ad.http.service';
+import { UtilityService } from '../../services/utility/utility.service';
 
 @Injectable()
 export class AdTodosService {
@@ -23,7 +25,7 @@ export class AdTodosService {
     private taskCountForCompletedJobs = new BehaviorSubject(0);
     taskCountForCompletedJobsObs = this.taskCountForCompletedJobs.asObservable();
     
-    constructor(private userService: UserService) {}
+    constructor(private userService: UserService, private adHttpService: AdHttpService, private utilityService: UtilityService) {}
 
     getTodosListByStatus(status: string, userId: string):Observable<any> {
      //this.todosListStatus.next(status);
@@ -40,6 +42,25 @@ export class AdTodosService {
 
     incrementTaskCountForCompletedJobs() {
       this.taskCountForCompletedJobs.next(1);  
+    }
+
+    updateUserTaskStatus(user_id, task):Observable<any> {
+      let errors = [];
+      if(!user_id) {
+        errors.push('User ID is not provided');
+      }
+      if(!task && !task.status) {
+        errors.push('Task or task status is not provided');
+      }
+
+      if(errors.length > 0) {
+        return this.utilityService.returnErrorObservable(errors);
+      }
+      
+      let params = {"user_id": user_id, "task": task};
+      return this.adHttpService.put('user-update-task', params).map((result) => {
+        return result;
+      });
     }
 
 }

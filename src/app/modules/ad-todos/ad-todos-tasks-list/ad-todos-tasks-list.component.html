@@ -5,10 +5,10 @@
 <button class="btn btn-default" (click)="changeTaskStatusToComplete()">Complete</button>
 
 <!--https://www.developerhandbook.com/web-api/angular-2-server-side-paging-using-ng2-pagination/-->
-<div class="row" *ngFor="let task of tasksList | paginate: { itemsPerPage: 2, currentPage: p, totalItems: tasksList.length }">
+<div class="row" *ngFor="let task of tasksList | paginate: { itemsPerPage: 20, currentPage: p, totalItems: tasksList.length }">
     <div class="col-sm-9">{{task.name}}</div>
-    <div style="margin:5px 5px;" class="col-sm-1"><button class="btn btn-md btn-primary" (click)="confirmStatusChange('in_progress')">In Progress</button></div>
+    <div style="margin:5px 5px;" class="col-sm-1"><button class="btn btn-md btn-primary" (click)="changeTaskStatusToInProgress(task)">In Progress</button></div>
     <div style="margin:5px 5px;" class="col-sm-1"><button class="btn btn-md btn-success" (click)="changeTaskStatusToComplete()">Complete</button></div>
 </div>
-<pagination-controls (pageChange)="p = $event"></pagination-controls>
+<pagination-controls (pageChange)="p = $event" directionLinks="true" ></pagination-controls>
 </div>

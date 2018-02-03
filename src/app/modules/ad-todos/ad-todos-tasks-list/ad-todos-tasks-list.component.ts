@@ -2,12 +2,13 @@ import { Component,OnInit } from '@angular/core';
 
 import { UserService } from '../../../services/user/user.service';
 import { AdTodosService } from '../ad-todos.service'
+import { AdToastrService } from '../../../services/ad-toastr/ad.toastr.service';
 
 @Component({
   selector: 'app-todos-tasks-list',
   templateUrl: './ad-todos-tasks-list.component.html',
   styleUrls: ['./ad-todos-tasks-list.component.css'],
-  providers: []
+  providers: [AdToastrService]
 })
 
 export class AdTodosTasksListComponent {
@@ -15,7 +16,7 @@ export class AdTodosTasksListComponent {
   tasksListStatus: string;
   p: number = 1;
 
-  constructor(private adTodosService: AdTodosService, private userService: UserService) {}
+  constructor(private adTodosService: AdTodosService, private userService: UserService, private adToastrService: AdToastrService) {}
 
   ngOnInit() {
     /*this.adTodosService.currentTodosListStatus.subscribe((tasksListStatus) => {
@@ -27,9 +28,9 @@ export class AdTodosTasksListComponent {
 
       this.userService.getUserTasksByStatus(this.tasksListStatus, user_id).subscribe((tasks) => {
         this.tasksList = tasks;
-        console.log(this.tasksList);
       }, (err) => {
-        console.log(err);
+        //console.log(err);
+        this.adToastrService.error('Error in getting tasks');
       });
     });
   }
@@ -38,8 +39,22 @@ export class AdTodosTasksListComponent {
     this.adTodosService.incrementTaskCountForNewJobs();
   }
   
-  changeTaskStatusToInProgress() {
-    this.adTodosService.incrementTaskCountForInProgressJobs();
+  changeTaskStatusToInProgress(task) {
+    task.status = 'in_progress';
+    this.userService.getCurrentUser().subscribe((user) => {
+      let user_id = user.getUserId();
+      this.adTodosService.updateUserTaskStatus(user_id, task).subscribe((result) => {
+        if(result && result.success) {
+          this.adTodosService.incrementTaskCountForInProgressJobs();
+          this.adToastrService.success('Successfully changed the status of '+ task.name +' to "In Progress"');
+        }
+      }, (err) => {
+          //console.log(err);
+          this.adToastrService.error('Not able to change status of '+ task.name +' to "In Progress"');
+      });
+    });
+    
+    //
   }
 
   changeTaskStatusToComplete() {

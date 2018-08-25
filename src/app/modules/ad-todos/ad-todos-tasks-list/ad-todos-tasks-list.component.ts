@@ -40,7 +40,8 @@ export class AdTodosTasksListComponent {
   }
   
   changeTaskStatusToInProgress(task) {
-    task.status = 'in_progress';
+    this.adTodosService.incrementTaskCountForInProgressJobs();
+    /*task.status = 'in_progress';
     this.userService.getCurrentUser().subscribe((user) => {
       let user_id = user.getUserId();
       this.adTodosService.updateUserTaskStatus(user_id, task).subscribe((result) => {
@@ -49,10 +50,9 @@ export class AdTodosTasksListComponent {
           this.adToastrService.success('Successfully changed the status of '+ task.name +' to "In Progress"');
         }
       }, (err) => {
-          //console.log(err);
           this.adToastrService.error('Not able to change status of '+ task.name +' to "In Progress"');
       });
-    });
+    });*/
     
     //
   }

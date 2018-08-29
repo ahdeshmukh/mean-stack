@@ -21,6 +21,15 @@ export class UserService {
       return null;
     });
   }
+
+  /*getCurrentUserNew():User {
+    let currentUser = this.localStorage.getItem('currentUser');
+    let user = null;
+    if(currentUser && currentUser.id && currentUser.email) {
+      user = new User(currentUser.id, currentUser.email, currentUser.firstName, currentUser.lastName);
+    }
+    return null;
+  }*/
   
   isLoggedIn():Observable<boolean> {
     return this.getCurrentUser().map((currentUser: any) => {
@@ -67,11 +76,16 @@ export class UserService {
 
   getUserTasksByStatus(status: string, uid: string): Observable<any> {
     let user_id = uid;
-    let task_status = status;
+    let task_status = (status) ? status : '';
     
-    if(!task_status) {
+    /*if(!task_status) {
       task_status = 'new';
+    }*/
+
+    if(!user_id) {
+
     }
+
     if(!user_id) {
       return this.getCurrentUser().map((currentUser: any) => {
         if(currentUser) {

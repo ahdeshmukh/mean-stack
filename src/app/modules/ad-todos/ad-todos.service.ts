@@ -63,4 +63,12 @@ export class AdTodosService {
       });
     }
 
+    isInProgressBtnDisabled(task) {
+      let disabled = false;
+      if(task.status && (task.status !== 'new')) {
+        disabled = true;
+      }
+      return disabled;
+    }
+
 }

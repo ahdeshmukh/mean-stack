@@ -7,5 +7,10 @@ export const environment = {
   production: false,
   name: 'DEV',
   images_base_path: 'assets/images/',
-  restApi: 'http://localhost:4000'
+  restApi: 'http://localhost:4000',
+  taskStatuses: {
+    inProgress: 'in_progress',
+    new: 'new',
+    complete: 'complete'
+  }
 };

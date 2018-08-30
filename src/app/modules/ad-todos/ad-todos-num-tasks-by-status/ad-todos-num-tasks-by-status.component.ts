@@ -17,10 +17,8 @@ export class AdTodosNumTasksByStatusComponent {
   inProgressTasksCount = 0;
   completedTasksCount = 0;
 
-
   constructor(private userService: UserService, private adTodosService: AdTodosService) {}
 
-    
   ngOnInit() {
     this.userService.getCurrentUser().subscribe((user) => {
       let user_id = user.getUserId();
@@ -31,15 +29,19 @@ export class AdTodosNumTasksByStatusComponent {
           let inProgressTasksCount = 0;
           let completedTasksCount  = 0;
 
+          let newTaskStatusVal = this.adTodosService.getNewTaskStatusVal();
+          let inProgressTaskStatusVal = this.adTodosService.getInProgressTaskStatusVal();
+          let completeTaskStatusVal = this.adTodosService.getCompleteTaskStatusVal();
+
           _.forEach(tasks, function(value) {
             switch(value.task_name) {
-              case 'new':
+              case newTaskStatusVal:
                 newTasksCount = (value.num_tasks) ? value.num_tasks : 0;
                 break;
-              case 'in_progress':
+              case inProgressTaskStatusVal:
                 inProgressTasksCount = (value.num_tasks) ? value.num_tasks : 0;
                 break;
-              case 'complete':
+              case completeTaskStatusVal:
                 completedTasksCount = (value.num_tasks) ? value.num_tasks : 0;
                 break;
               default:

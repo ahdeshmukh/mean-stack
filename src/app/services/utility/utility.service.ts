@@ -48,8 +48,4 @@ export class UtilityService {
     return this.currentEnv.taskStatuses;
   }
 
-  getInProgressStatusVal(): string {
-    return (this.currentEnv.taskStatuses.INPROGRESS) ? this.currentEnv.taskStatuses.INPROGRESS : '';
-  }
-
 }

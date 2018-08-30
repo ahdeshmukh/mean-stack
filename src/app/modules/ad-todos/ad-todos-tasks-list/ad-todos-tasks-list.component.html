@@ -1,9 +1,9 @@
 <div class="container">
     <!--<h2>{{tasksList}} - {{tasksListStatus}}</h2>-->
-    <button class="btn btn-default" (click)="addNewTask()">New Task</button>
+    <!--<button class="btn btn-default" (click)="addNewTask()">New Task</button>
     <button class="btn btn-default" (click)="changeTaskStatusToInProgress()">In Progress</button>
     <button class="btn btn-default" (click)="changeTaskStatusToComplete()">Complete</button>
-
+    -->
     <!--https://www.developerhandbook.com/web-api/angular-2-server-side-paging-using-ng2-pagination/-->
     <div class="row" *ngFor="let task of tasksList | paginate: { itemsPerPage: 20, currentPage: p, totalItems: tasksList.length }">
         <div class="col-sm-9">{{task.name}}</div>

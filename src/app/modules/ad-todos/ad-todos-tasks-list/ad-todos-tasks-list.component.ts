@@ -45,7 +45,7 @@ export class AdTodosTasksListComponent {
   
   changeTaskStatusToInProgress(task) {
     //this.adTodosService.incrementTaskCountForInProgressJobs();
-    task.status = 'in_progress';
+    task.status = this.adTodosService.getInProgressTaskStatusVal();
     this.userService.getCurrentUser().subscribe((user) => {
       let user_id = user.getUserId();
       this.adTodosService.updateUserTaskStatus(user_id, task).subscribe((result) => {

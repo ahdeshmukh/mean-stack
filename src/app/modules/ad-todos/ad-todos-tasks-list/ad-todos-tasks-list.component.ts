@@ -77,7 +77,7 @@ export class AdTodosTasksListComponent {
     console.log(this);
   }
 
-  isInProgressBtnDisabled(task) {
+  isInProgressBtnDisabled(task) {//console.log('fsdfsfs');
     /*let disabled = false;
     if(task.status && (task.status === 'in_progress')) {
       disabled = true;
@@ -85,6 +85,10 @@ export class AdTodosTasksListComponent {
     return disabled;*/
     return this.adTodosService.isInProgressBtnDisabled(task);
 
+  }
+
+  isCompleteBtnDisabled(task) {
+    return this.adTodosService.isCompleteBtnDisabled(task);
   }
 
 }

@@ -30,6 +30,7 @@ export class AdTodosNumTasksByStatusComponent {
           let newTasksCount = 0;
           let inProgressTasksCount = 0;
           let completedTasksCount  = 0;
+
           _.forEach(tasks, function(value) {
             switch(value.task_name) {
               case 'new':

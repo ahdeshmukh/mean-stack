@@ -4,8 +4,8 @@ export const environment = {
   images_base_path: 'assets/images/',
   restApi: 'https://express-deshmukh-ah.herokuapp.com',
   taskStatuses: {
-    inProgress: 'in_progress',
-    new: 'new',
-    complete: 'complete'
+    INPROGRESS: 'in_progress',
+    NEW: 'new',
+    COMPLETE: 'complete'
   }
 };

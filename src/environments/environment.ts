@@ -9,8 +9,8 @@ export const environment = {
   images_base_path: 'assets/images/',
   restApi: 'http://localhost:4000',
   taskStatuses: {
-    inProgress: 'in_progress',
-    new: 'new',
-    complete: 'complete'
+    INPROGRESS: 'in_progress',
+    NEW: 'new',
+    COMPLETE: 'complete'
   }
 };

@@ -25,7 +25,9 @@ export class AdTodosService {
     private taskCountForCompletedJobs = new BehaviorSubject(0);
     taskCountForCompletedJobsObs = this.taskCountForCompletedJobs.asObservable();
     
-    constructor(private userService: UserService, private adHttpService: AdHttpService, private utilityService: UtilityService) {}
+    constructor(private userService: UserService, 
+      private adHttpService: AdHttpService, 
+      private utilityService: UtilityService) {}
 
     getTodosListByStatus(status: string, userId: string):Observable<any> {
      //this.todosListStatus.next(status);
@@ -44,7 +46,7 @@ export class AdTodosService {
       this.taskCountForCompletedJobs.next(1);  
     }
 
-    updateUserTaskStatus(user_id, task):Observable<any> {
+    updateUserTaskStatus(user_id, task):Observable<any> {//console.log('fsdfsdcccc');
       let errors = [];
       if(!user_id) {
         errors.push('User ID is not provided');
@@ -63,9 +65,30 @@ export class AdTodosService {
       });
     }
 
+    getInProgressTaskVal() {
+      return this.utilityService.getStatusesVal().INPROGRESS;
+    }
+    getCompleteTaskVal() {
+      return this.utilityService.getStatusesVal().COMPLETE;
+    }
+    getNewTaskVal() {
+      return this.utilityService.getStatusesVal().NEW;
+    }
+
     isInProgressBtnDisabled(task) {
+      //console.log('fsdfdlk');
       let disabled = false;
-      if(task.status && (task.status !== 'new')) {
+      //let taskStatuses = this.utilityService.getStatusesVal();
+      if(task.status && (task.status !== this.getNewTaskVal())) {
+        disabled = true;
+      }
+      return disabled;
+    }
+
+    isCompleteBtnDisabled(task) {
+      let disabled = false;
+      //let taskStatuses = this.utilityService.getStatusesVal();
+      if(task.status && task.status === this.getCompleteTaskVal()) {
         disabled = true;
       }
       return disabled;

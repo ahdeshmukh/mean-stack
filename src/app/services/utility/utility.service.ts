@@ -2,15 +2,17 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { MyError } from './../../classes/myerror.class';
+import { TaskStatuses } from '../../app.task-statuses';
+
 
 @Injectable()
 export class UtilityService {
 
   environment: any;
-  current_env: any;
+  currentEnv: any;
   
   constructor() { 
-    this.current_env = environment;
+    this.currentEnv = environment;
   }
 
   /*getCurrentEnvironment() {
@@ -18,16 +20,16 @@ export class UtilityService {
   }*/
 
   getCurrentEnvironmentName():string {
-    //let current_env = this.getCurrentEnvironment();
-    return this.current_env.name || 'NA';
+    //let currentEnv = this.getCurrentEnvironment();
+    return this.currentEnv.name || 'NA';
   }
 
   getImagesBasePath():string {
-    return this.current_env.images_base_path || '';
+    return this.currentEnv.images_base_path || '';
   }
 
   getRestApi():string {
-    return this.current_env.restApi || '';
+    return this.currentEnv.restApi || '';
   }
 
   returnErrorObservable(error): Observable<any> {
@@ -40,6 +42,14 @@ export class UtilityService {
     return Observable.create(observer => {
       observer.complete(value);
     });
+  }
+
+  getStatusesVal(): TaskStatuses {
+    return this.currentEnv.taskStatuses;
+  }
+
+  getInProgressStatusVal(): string {
+    return (this.currentEnv.taskStatuses.INPROGRESS) ? this.currentEnv.taskStatuses.INPROGRESS : '';
   }
 
 }

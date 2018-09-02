@@ -10,7 +10,10 @@ import { AdHttpService } from '../ad-http/ad.http.service';
 export class UserService {
 
   private currentUser;
-  constructor(protected localStorage: AsyncLocalStorage, private utilityService: UtilityService, private adHttpService: AdHttpService) { }
+  constructor(protected localStorage: AsyncLocalStorage, 
+    private utilityService: UtilityService, 
+    private adHttpService: AdHttpService,
+  ) { }
 
   getCurrentUser():Observable<User> {
     return this.localStorage.getItem('currentUser').map((currentUser: any) => {
@@ -78,14 +81,6 @@ export class UserService {
     let user_id = uid;
     let task_status = (status) ? status : '';
     
-    /*if(!task_status) {
-      task_status = 'new';
-    }*/
-
-    if(!user_id) {
-
-    }
-
     if(!user_id) {
       return this.getCurrentUser().map((currentUser: any) => {
         if(currentUser) {
@@ -112,6 +107,38 @@ export class UserService {
         return tasksData;
       });
     }
+  }
+
+  addUser = (user: object):Observable<any> => {
+    let errors = [];
+
+    if(!user['firstName']) {
+      errors.push('First name is required')
+    }
+    if(!user['lastName']) {
+      errors.push('Last name is required')
+    }
+    if(!user['email']) {
+      errors.push('Email is required');
+    }
+    if(!user['password']) {
+      errors.push('Password is required');
+    }
+    if(!user['confirmPassword']) {
+      errors.push('Confirm Password is required');
+    }
+    if(user['password'] !== user['confirmPassword']) {
+      errors.push('Password and Confirm password do not match');
+    }
+
+    if(errors.length > 0) {
+      return this.utilityService.returnErrorObservable(errors);
+    }
+
+    return this.adHttpService.post('add-user', user).map((result) => {
+      return result;
+    });
+
   }
 
 }

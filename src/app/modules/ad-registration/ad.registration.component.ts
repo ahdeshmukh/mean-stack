@@ -1,11 +1,17 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, EmailValidator } from '@angular/forms';
 
+import { UserService } from '../../services/user/user.service';
+import { AdToastrService } from '../../services/ad-toastr/ad.toastr.service';
+
 @Component({
   selector: 'app-registration',
   templateUrl: './ad.registration.component.html',
   styleUrls: [],
-  providers: []
+  providers: [
+    UserService,
+    AdToastrService
+  ]
 })
 
 export class AdRegistrationComponent {
@@ -20,11 +26,13 @@ export class AdRegistrationComponent {
   password:string = '';
   confirmPassword:string = '';
 
+  registrationInProgress = false;
+
   showLoginForm(showLoginForm: boolean) {
     this.onShowingLoginForm.emit(showLoginForm);
   }
     
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private userService: UserService, private adToastr: AdToastrService) {
     this.rForm = fb.group({
       'firstName': [null, Validators.required],
       'lastName': [null, Validators.required],
@@ -36,8 +44,24 @@ export class AdRegistrationComponent {
     });
   }
 
-  register(registrationForm) {
-    console.log(registrationForm)
+  register(user) {
+    this.registrationInProgress = true;
+    let errorMsg = 'Error in registering the user. Please try again.';
+    this.userService.addUser(user).subscribe((result) => {
+      if(!result || !result.success) {
+        if(result.error && result.error.code && result.error.code == 11000) {
+          errorMsg = 'Email is already in use. Register using a different email'
+        }
+        this.adToastr.error(errorMsg);
+      } else {
+        this.adToastr.success('Welcome ' + user.firstName + ' ' + user.lastName + '. Please log in using your new credentials');
+        this.showLoginForm(true);
+      }
+      this.registrationInProgress = false;
+    }, (error) => {
+      this.adToastr.error(errorMsg);
+      this.registrationInProgress = false;
+    })
   }
 
 }

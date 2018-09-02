@@ -6,7 +6,7 @@ import { AdTodosService } from './ad-todos.service'
 @Component({
   selector: 'app-todos',
   templateUrl: './ad.todos.component.html',
-  styleUrls: [],
+  styleUrls: ['./ad.todos.component.css'],
   providers: [AdTodosService]
 })
 

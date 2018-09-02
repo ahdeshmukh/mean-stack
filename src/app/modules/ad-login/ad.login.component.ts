@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { UtilityService } from '../../services/utility/utility.service';
 import { AuthService } from '../../services/auth/auth.service';
-import { AdHttpService } from '../../services/ad-http/ad.http.service';
+//import { AdHttpService } from '../../services/ad-http/ad.http.service';
 import { AdToastrService } from '../../services/ad-toastr/ad.toastr.service';
 import { UserService } from '../../services/user/user.service';
 
@@ -15,7 +15,7 @@ import { UserService } from '../../services/user/user.service';
   providers: [
     UtilityService,
     AuthService,
-    AdHttpService,
+    //AdHttpService,
     AdToastrService
   ]
 })
@@ -28,8 +28,8 @@ export class AdLoginComponent {
 
   rForm: FormGroup;
   post:any; // property for our submitted form
-  password:string = '';
-  email:string = '';
+  //password:string = '';
+  //email:string = '';
 
   showRegistrationForm(showRegistrationForm: boolean) {
     this.onShowingRegistrationForm.emit(showRegistrationForm);
@@ -51,8 +51,8 @@ export class AdLoginComponent {
   login(loginForm) {
     this.loggingInProgress = true;
 	
-	this.password = loginForm.password;
-    this.email = loginForm.email;
+	  //this.password = loginForm.password;
+    //this.email = loginForm.email;
     this.authService.login(loginForm.email, loginForm.password)
     .subscribe(
       (result) => {
@@ -64,11 +64,11 @@ export class AdLoginComponent {
             this.router.navigateByUrl('todos');
           });
         }
-		this.loggingInProgress = false;
+		    this.loggingInProgress = false;
       },
       (error) => {
-        this.adToastr.error();
-		this.loggingInProgress = false;
+        this.adToastr.error('Something went wrong while logging in. Please try again.');
+		    this.loggingInProgress = false;
       }
     );
   }

@@ -36,7 +36,7 @@
         </div>
     </div>
     <div>
-        <button type="submit" class="btn btn-danger" [disabled]="!rForm.valid">Register</button>
+        <button type="submit" class="btn btn-danger" [disabled]="!rForm.valid || registrationInProgress">Register</button>
         <a *ngIf="showLoginLink" href="#" (click)="showLoginForm(true)" class="pull-right">Login</a>
     </div>
 </form>

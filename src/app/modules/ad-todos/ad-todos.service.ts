@@ -65,21 +65,20 @@ export class AdTodosService {
       });
     }
 
-    getInProgressTaskStatusVal() {
+    getInProgressTaskStatusValues() {
       return this.utilityService.getStatusesVal().INPROGRESS;
     }
-    getCompleteTaskStatusVal() {
+    getCompleteTaskStatusValues() {
       return this.utilityService.getStatusesVal().COMPLETE;
     }
-    getNewTaskStatusVal() {
+    getNewTaskStatusValues() {
       return this.utilityService.getStatusesVal().NEW;
     }
 
     isInProgressBtnDisabled(task) {
-      console.log('fsdfdlk');
+      //console.log('fsdfdlk');
       let disabled = false;
-      //let taskStatuses = this.utilityService.getStatusesVal();
-      if(task.status && (task.status !== this.getNewTaskStatusVal())) {
+      if(task.status && (task.status !== this.getNewTaskStatusValues())) {
         disabled = true;
       }
       return disabled;
@@ -87,8 +86,7 @@ export class AdTodosService {
 
     isCompleteBtnDisabled(task) {
       let disabled = false;
-      //let taskStatuses = this.utilityService.getStatusesVal();
-      if(task.status && (task.status === this.getCompleteTaskStatusVal())) {
+      if(task.status && (task.status === this.getCompleteTaskStatusValues())) {
         disabled = true;
       }
       return disabled;

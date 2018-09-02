@@ -29,19 +29,19 @@ export class AdTodosNumTasksByStatusComponent {
           let inProgressTasksCount = 0;
           let completedTasksCount  = 0;
 
-          let newTaskStatusVal = this.adTodosService.getNewTaskStatusVal();
-          let inProgressTaskStatusVal = this.adTodosService.getInProgressTaskStatusVal();
-          let completeTaskStatusVal = this.adTodosService.getCompleteTaskStatusVal();
+          let newTaskStatusValues = this.adTodosService.getNewTaskStatusValues();
+          let inProgressTaskStatusValues = this.adTodosService.getInProgressTaskStatusValues();
+          let completeTaskStatusValues = this.adTodosService.getCompleteTaskStatusValues();
 
           _.forEach(tasks, function(value) {
             switch(value.task_name) {
-              case newTaskStatusVal:
+              case newTaskStatusValues:
                 newTasksCount = (value.num_tasks) ? value.num_tasks : 0;
                 break;
-              case inProgressTaskStatusVal:
+              case inProgressTaskStatusValues:
                 inProgressTasksCount = (value.num_tasks) ? value.num_tasks : 0;
                 break;
-              case completeTaskStatusVal:
+              case completeTaskStatusValues:
                 completedTasksCount = (value.num_tasks) ? value.num_tasks : 0;
                 break;
               default:

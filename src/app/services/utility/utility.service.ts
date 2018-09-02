@@ -46,6 +46,7 @@ export class UtilityService {
 
   getStatusesVal(): TaskStatuses {
     return this.currentEnv.taskStatuses;
+    //return new TaskStatuses();
   }
 
 }

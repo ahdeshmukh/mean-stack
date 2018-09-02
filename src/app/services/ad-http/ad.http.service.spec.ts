@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { AdHttpService } from './ad-http.service';
+import { AdHttpService } from './ad.http.service';
 
 describe('AdHttpService', () => {
   beforeEach(() => {

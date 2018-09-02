@@ -1,7 +1,7 @@
-export interface TaskStatuses {
-    NEW: NewTaskStatusValues;
-    INPROGRESS: InProgressStatusValues;
-    COMPLETE: CompleteStatusValues;
+export class TaskStatuses {
+    NEW = new NewTaskStatusValues();
+    INPROGRESS = new InProgressStatusValues();
+    COMPLETE = new CompleteStatusValues();
 }
 
 class StatusValues {

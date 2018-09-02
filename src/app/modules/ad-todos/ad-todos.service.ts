@@ -13,9 +13,6 @@ import { UtilityService } from '../../services/utility/utility.service';
 @Injectable()
 export class AdTodosService {
 
-    /*private todosListStatus = new BehaviorSubject<string>('new');
-    currentTodosListStatus = this.todosListStatus.asObservable();*/
-
     private taskCountForNewJobs = new BehaviorSubject(null);
     taskCountForNewJobsObs = this.taskCountForNewJobs.asObservable();
 
@@ -30,7 +27,6 @@ export class AdTodosService {
       private utilityService: UtilityService) {}
 
     getTodosListByStatus(status: string, userId: string):Observable<any> {
-     //this.todosListStatus.next(status);
      return this.userService.getUserTasksByStatus(status, userId);
     }
 
@@ -51,13 +47,6 @@ export class AdTodosService {
       if(!user_id) {
         errors.push('User ID is not provided');
       }
-      /*if(!task && !task.status) {
-        errors.push('Task or task status is not provided');
-      }
-      if(!task && !task.currentStatus) {
-        errors.push()
-      }*/
-
       if(!task) {
         errors.push('Task is not provided');
       } else {
@@ -79,20 +68,19 @@ export class AdTodosService {
       });
     }
 
-    getInProgressTaskStatusValues() {
-      return this.utilityService.getStatusesVal().INPROGRESS;
+    getInProgressTaskStatusValue() {
+      return this.utilityService.getStatusesData().INPROGRESS.value;
     }
-    getCompleteTaskStatusValues() {
-      return this.utilityService.getStatusesVal().COMPLETE;
+    getCompleteTaskStatusValue() {
+      return this.utilityService.getStatusesData().COMPLETE.value;
     }
-    getNewTaskStatusValues() {
-      return this.utilityService.getStatusesVal().NEW;
+    getNewTaskStatusValue() {
+      return this.utilityService.getStatusesData().NEW.value;
     }
 
     isInProgressBtnDisabled(task) {
-      //console.log('fsdfdlk');
       let disabled = false;
-      if(task.status && (task.status !== this.getNewTaskStatusValues())) {
+      if(task.status && (task.status !== this.getNewTaskStatusValue())) {
         disabled = true;
       }
       return disabled;
@@ -100,7 +88,7 @@ export class AdTodosService {
 
     isCompleteBtnDisabled(task) {
       let disabled = false;
-      if(task.status && (task.status === this.getCompleteTaskStatusValues())) {
+      if(task.status && (task.status === this.getCompleteTaskStatusValue())) {
         disabled = true;
       }
       return disabled;

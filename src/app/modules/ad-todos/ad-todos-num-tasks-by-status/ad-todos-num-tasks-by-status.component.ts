@@ -17,10 +17,9 @@ export class AdTodosNumTasksByStatusComponent {
   inProgressTasksCount = 0;
   completedTasksCount = 0;
 
-  newTaskStatusValues = this.adTodosService.getNewTaskStatusValues();
-  inProgressTaskStatusValues = this.adTodosService.getInProgressTaskStatusValues();
-  completeTaskStatusValues = this.adTodosService.getCompleteTaskStatusValues();
-
+  newTaskStatusValues = this.adTodosService.getNewTaskStatusValue();
+  inProgressTaskStatusValues = this.adTodosService.getInProgressTaskStatusValue();
+  completeTaskStatusValues = this.adTodosService.getCompleteTaskStatusValue();
 
   constructor(private userService: UserService, private adTodosService: AdTodosService) {}
 
@@ -38,6 +37,8 @@ export class AdTodosNumTasksByStatusComponent {
           let newTaskStatusValues = this.newTaskStatusValues;
           let inProgressTaskStatusValues = this.inProgressTaskStatusValues;
           let completeTaskStatusValues = this.completeTaskStatusValues;
+
+          console.log();
 
           _.forEach(tasks, function(value) {
             switch(value.task_name) {

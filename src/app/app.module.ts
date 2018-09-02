@@ -27,9 +27,9 @@ import { AdHttpService } from './services/ad-http/ad.http.service';
     BrowserAnimationsModule,
     AsyncLocalStorageModule,
     ToastrModule.forRoot({
-		maxOpened: 1,
-		autoDismiss: true
-	}),
+      maxOpened: 1,
+      autoDismiss: true
+    }),
     AdTodosModule,
     AppRoutingModule,
     AdHomeModule

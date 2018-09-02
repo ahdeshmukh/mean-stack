@@ -26,14 +26,12 @@ export class AdTodosTasksListComponent {
       let user_id = user.getUserId();
 
       this.userService.getUserTasksByStatus(this.tasksListStatus, user_id).subscribe((tasks) => {
-        //this.tasksList = tasks;
         tasks.map((task) => {
           task.isInProgressBtnDisabled = this.isInProgressBtnDisabled(task);
           task.isCompleteBtnDisabled = this.isCompleteBtnDisabled(task);
           this.tasksList.push(task);
         })
       }, (err) => {
-        //console.log(err);
         this.adToastrService.error('Error in getting tasks');
       });
     });
@@ -44,43 +42,11 @@ export class AdTodosTasksListComponent {
   }
   
   changeTaskStatusToInProgress(task) {
-    //this.adTodosService.incrementTaskCountForInProgressJobs();
-    /*task.status = this.adTodosService.getInProgressTaskStatusValues().value;
-    this.userService.getCurrentUser().subscribe((user) => {
-      let userId = user.getUserId();
-      this.adTodosService.updateUserTaskStatus(userId, task).subscribe((result) => {
-        if(result && result.success) {
-          this.adTodosService.incrementTaskCountForInProgressJobs();
-          this.adToastrService.success('Successfully changed the status of '+ task.name +' to "In Progress"');
-          let taskIndex = _.findIndex(this.tasksList, {"name":result.data.task.name, "created_time": result.data.task.created_time});
-          task.isInProgressBtnDisabled = true; // task has been successfully converted to In Progress
-          this.tasksList[taskIndex] = task
-        }
-      }, (err) => {
-          this.adToastrService.error('Not able to change status of '+ task.name +' to "In Progress"');
-      });
-    });*/
-    this.changeTaskStatus(task, this.adTodosService.getInProgressTaskStatusValues());
+    this.changeTaskStatus(task, this.adTodosService.getInProgressTaskStatusValue());
   }
 
   changeTaskStatusToComplete(task) {
-    /*task.status = this.adTodosService.getCompleteTaskStatusValues().value;
-    this.userService.getCurrentUser().subscribe((user) => {
-      let userId = user.getUserId();
-      this.adTodosService.updateUserTaskStatus(userId, task).subscribe((result) => {
-        if(result && result.success) {
-          this.adTodosService.incrementTaskCountForCompletedJobs();
-          this.adToastrService.success('Successfully changed the status of '+ task.name +' to "Complete"');
-          let taskIndex = _.findIndex(this.tasksList, {"name":result.data.task.name, "created_time": result.data.task.created_time});
-          task.isCompleteBtnDisabled = true; // task has been successfully converted to Completed
-          task.isInProgressBtnDisabled = true; // since task is completed, disabling the In Progress button
-          this.tasksList[taskIndex] = task
-        }
-      }, (err) => {
-          this.adToastrService.error('Not able to change status of '+ task.name +' to "Complete"');
-      });
-    });*/
-    this.changeTaskStatus(task, this.adTodosService.getCompleteTaskStatusValues());
+    this.changeTaskStatus(task, this.adTodosService.getCompleteTaskStatusValue());
   }
 
   changeTaskStatus = (task, newStatus) => {
@@ -92,18 +58,15 @@ export class AdTodosTasksListComponent {
       let userId = user.getUserId();
       this.adTodosService.updateUserTaskStatus(userId, newTask).subscribe((result) => {
         if(result && result.success) {
-          
           switch(newStatus) {
-            case this.adTodosService.getInProgressTaskStatusValues():
+            case this.adTodosService.getInProgressTaskStatusValue():
               this.adTodosService.incrementTaskCountForInProgressJobs();
               newTask.isInProgressBtnDisabled = true;
-              // todo: decrease count for new jobs
               break;
-            case this.adTodosService.getCompleteTaskStatusValues():
+            case this.adTodosService.getCompleteTaskStatusValue():
               this.adTodosService.incrementTaskCountForCompletedJobs(currentStatus);
               newTask.isCompleteBtnDisabled = true; // task has been successfully converted to Completed
               newTask.isInProgressBtnDisabled = true; // since task is completed, disabling the In Progress button
-              //todo: if currentStatus == 'new', decrease count of new, else if currentStatus is 'in_progress' decrease count of in_progress
               break;
             default:
               break;
@@ -112,13 +75,6 @@ export class AdTodosTasksListComponent {
           let taskIndex = _.findIndex(this.tasksList, {"name":result.data.task.name, "created_time": result.data.task.created_time});
           this.tasksList[taskIndex] = newTask;
           this.adToastrService.success('Successfully changed the status of '+ task.name);
-          
-          //this.adTodosService.incrementTaskCountForCompletedJobs();
-          //this.adToastrService.success('Successfully changed the status of '+ task.name +' to "Complete"');
-          //let taskIndex = _.findIndex(this.tasksList, {"name":result.data.task.name, "created_time": result.data.task.created_time});
-          //task.isCompleteBtnDisabled = true; // task has been successfully converted to Completed
-          //task.isInProgressBtnDisabled = true; // since task is completed, disabling the In Progress button
-          //this.tasksList[taskIndex] = task
         } else {
           this.adToastrService.error('Not able to change status of '+ task.name);
         }
@@ -127,8 +83,6 @@ export class AdTodosTasksListComponent {
       });
     });
   }
-
-  
 
   isInProgressBtnDisabled(task) {
     return this.adTodosService.isInProgressBtnDisabled(task);

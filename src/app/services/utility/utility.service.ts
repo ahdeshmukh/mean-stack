@@ -15,10 +15,6 @@ export class UtilityService {
     this.currentEnv = environment;
   }
 
-  /*getCurrentEnvironment() {
-    return environment;
-  }*/
-
   getCurrentEnvironmentName():string {
     //let currentEnv = this.getCurrentEnvironment();
     return this.currentEnv.name || 'NA';
@@ -44,9 +40,9 @@ export class UtilityService {
     });
   }
 
-  getStatusesVal(): TaskStatuses {
-    return this.currentEnv.taskStatuses;
-    //return new TaskStatuses();
+  getStatusesData(): TaskStatuses {
+    //return this.currentEnv.taskStatuses;
+    return new TaskStatuses();
   }
 
 }

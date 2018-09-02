@@ -17,6 +17,11 @@ export class AdTodosNumTasksByStatusComponent {
   inProgressTasksCount = 0;
   completedTasksCount = 0;
 
+  newTaskStatusValues = this.adTodosService.getNewTaskStatusValues();
+  inProgressTaskStatusValues = this.adTodosService.getInProgressTaskStatusValues();
+  completeTaskStatusValues = this.adTodosService.getCompleteTaskStatusValues();
+
+
   constructor(private userService: UserService, private adTodosService: AdTodosService) {}
 
   ngOnInit() {
@@ -29,9 +34,10 @@ export class AdTodosNumTasksByStatusComponent {
           let inProgressTasksCount = 0;
           let completedTasksCount  = 0;
 
-          let newTaskStatusValues = this.adTodosService.getNewTaskStatusValues();
-          let inProgressTaskStatusValues = this.adTodosService.getInProgressTaskStatusValues();
-          let completeTaskStatusValues = this.adTodosService.getCompleteTaskStatusValues();
+          // have to use let and create new variables because using this. is giving error in switch statement
+          let newTaskStatusValues = this.newTaskStatusValues;
+          let inProgressTaskStatusValues = this.inProgressTaskStatusValues;
+          let completeTaskStatusValues = this.completeTaskStatusValues;
 
           _.forEach(tasks, function(value) {
             switch(value.task_name) {
@@ -63,9 +69,32 @@ export class AdTodosNumTasksByStatusComponent {
 
     this.adTodosService.taskCountForInProgressJobsObs.subscribe(() => {
       this.inProgressTasksCount++;
+      if(this.newTasksCount) {
+        this.newTasksCount--;
+      }
     });
 
-    this.adTodosService.taskCountForCompletedJobsObs.subscribe(() => {
+    this.adTodosService.taskCountForCompletedJobsObs.subscribe((currentStatus) => {
+      if(currentStatus) {
+        // have to use let and create new variables because using this. is giving error in switch statement
+        let newTaskStatusValues = this.newTaskStatusValues;
+        let inProgressTaskStatusValues = this.inProgressTaskStatusValues;
+        //let completeTaskStatusValues = this.completeTaskStatusValues;
+        switch(currentStatus) {
+          case newTaskStatusValues:
+            if(this.newTasksCount) {
+              this.newTasksCount--;
+            }
+            break;
+          case inProgressTaskStatusValues:
+            if(this.inProgressTasksCount) {
+              this.inProgressTasksCount--;
+            }
+            break;
+          default:
+            break;
+        }
+      }
       this.completedTasksCount++;
     });
 

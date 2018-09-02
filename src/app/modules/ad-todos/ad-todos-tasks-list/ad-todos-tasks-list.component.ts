@@ -87,6 +87,7 @@ export class AdTodosTasksListComponent {
     let currentStatus = task.status;
     let newTask = task;
     newTask.status = newStatus;
+    newTask.currentStatus = currentStatus; // need this to ensure that we only allow tasks to be updated to certain status from current status
     this.userService.getCurrentUser().subscribe((user) => {
       let userId = user.getUserId();
       this.adTodosService.updateUserTaskStatus(userId, newTask).subscribe((result) => {
@@ -99,7 +100,7 @@ export class AdTodosTasksListComponent {
               // todo: decrease count for new jobs
               break;
             case this.adTodosService.getCompleteTaskStatusValues():
-              this.adTodosService.incrementTaskCountForCompletedJobs();
+              this.adTodosService.incrementTaskCountForCompletedJobs(currentStatus);
               newTask.isCompleteBtnDisabled = true; // task has been successfully converted to Completed
               newTask.isInProgressBtnDisabled = true; // since task is completed, disabling the In Progress button
               //todo: if currentStatus == 'new', decrease count of new, else if currentStatus is 'in_progress' decrease count of in_progress
@@ -118,6 +119,8 @@ export class AdTodosTasksListComponent {
           //task.isCompleteBtnDisabled = true; // task has been successfully converted to Completed
           //task.isInProgressBtnDisabled = true; // since task is completed, disabling the In Progress button
           //this.tasksList[taskIndex] = task
+        } else {
+          this.adToastrService.error('Not able to change status of '+ task.name);
         }
       }, (err) => {
           this.adToastrService.error('Not able to change status of '+ task.name);

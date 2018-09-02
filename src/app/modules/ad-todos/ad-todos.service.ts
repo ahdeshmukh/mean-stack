@@ -16,13 +16,13 @@ export class AdTodosService {
     /*private todosListStatus = new BehaviorSubject<string>('new');
     currentTodosListStatus = this.todosListStatus.asObservable();*/
 
-    private taskCountForNewJobs = new BehaviorSubject(0);
+    private taskCountForNewJobs = new BehaviorSubject(null);
     taskCountForNewJobsObs = this.taskCountForNewJobs.asObservable();
 
-    private taskCountForInProgressJobs = new BehaviorSubject(0);
+    private taskCountForInProgressJobs = new BehaviorSubject(null);
     taskCountForInProgressJobsObs = this.taskCountForInProgressJobs.asObservable();
 
-    private taskCountForCompletedJobs = new BehaviorSubject(0);
+    private taskCountForCompletedJobs = new BehaviorSubject(null);
     taskCountForCompletedJobsObs = this.taskCountForCompletedJobs.asObservable();
     
     constructor(private userService: UserService, 
@@ -42,8 +42,8 @@ export class AdTodosService {
       this.taskCountForInProgressJobs.next(1);
     }
 
-    incrementTaskCountForCompletedJobs() {
-      this.taskCountForCompletedJobs.next(1);  
+    incrementTaskCountForCompletedJobs(currentStatus) {
+      this.taskCountForCompletedJobs.next(currentStatus);  
     }
 
     updateUserTaskStatus(user_id, task):Observable<any> {//console.log('fsdfsdcccc');
@@ -51,8 +51,22 @@ export class AdTodosService {
       if(!user_id) {
         errors.push('User ID is not provided');
       }
-      if(!task && !task.status) {
+      /*if(!task && !task.status) {
         errors.push('Task or task status is not provided');
+      }
+      if(!task && !task.currentStatus) {
+        errors.push()
+      }*/
+
+      if(!task) {
+        errors.push('Task is not provided');
+      } else {
+        if(!task.status) {
+          errors.push('New Task status is not provided');
+        }
+        if(!task.currentStatus) {
+          errors.push('Current Task status is not provided');
+        }
       }
 
       if(errors.length > 0) {

@@ -22,3 +22,34 @@
     text-align:center;
     color:white;
 }
+
+.status-task-count-container {
+    text-align: center;
+}
+
+.status-task-count {
+    font-size: 140px;
+}
+.status-task-count-new {
+    color: #b92222;
+}
+.status-task-count-in-progress {
+    color: #2b2ba5;
+}
+.status-task-count-complete {
+    color: #1c5f1c;
+}
+
+/* On screens that are 992px or less, set the background color to blue */
+@media screen and (max-width: 992px) {
+    .status-task-count {
+      font-size: 70px;
+    }
+  }
+  
+  /* On screens that are 600px or less, set the background color to olive */
+  @media screen and (max-width: 600px) {
+    .status-task-count {
+        font-size: 60px;
+    }
+  }

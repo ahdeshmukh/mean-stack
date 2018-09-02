@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { Ad.ToastrService } from './ad.toastr.service';
+import { AdToastrService } from './ad.toastr.service';
 
 describe('Ad.ToastrService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [Ad.ToastrService]
+      providers: [AdToastrService]
     });
   });
 
-  it('should be created', inject([Ad.ToastrService], (service: Ad.ToastrService) => {
+  it('should be created', inject([AdToastrService], (service: AdToastrService) => {
     expect(service).toBeTruthy();
   }));
 });

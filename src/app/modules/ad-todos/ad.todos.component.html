@@ -1,6 +1,10 @@
 <app-header></app-header>
 <div class="container">
-    <h2>List of tasks for {{firstName}} {{lastName}}</h2>
-    <app-todos-num-tasks-by-status></app-todos-num-tasks-by-status>
-    <app-todos-tasks-list></app-todos-tasks-list>
+    <div><app-todos-num-tasks-by-status></app-todos-num-tasks-by-status></div>
+    <div>
+        <h2>{{firstName}} {{lastName}}'s Tasks</h2>
+        <div class="task-list-container">
+            <app-todos-tasks-list></app-todos-tasks-list>
+        </div>
+    </div>
 </div>

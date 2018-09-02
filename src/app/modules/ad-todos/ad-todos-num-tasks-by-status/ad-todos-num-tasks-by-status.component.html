@@ -1,17 +1,20 @@
 <div class="row">
-  <div class="col-sm-4">
-    <div (click)="getTasksbyStatus('new')" class="circle-text xyz">
-      <div>{{newTasksCount}}</div>
+  <div class="col-xs-4">
+    <div (click)="getTasksbyStatus('new')" class="status-task-count-container">
+      <div class="status-task-count status-task-count-new">{{newTasksCount}}</div>
+      <div class="status-task-count-new">NEW</div>
     </div>
   </div>
-  <div class="col-sm-4">
-    <div (click)="getTasksbyStatus('in_progress')" class="circle-text">
-      <div>{{inProgressTasksCount}}</div>
+  <div class="col-xs-4">
+    <div (click)="getTasksbyStatus('in_progress')" class="status-task-count-container">
+      <div class="status-task-count status-task-count-in-progress">{{inProgressTasksCount}}</div>
+      <div class="status-task-count-in-progress">IN PROGRESS</div>
     </div>
   </div>
-  <div class="col-sm-4">
-    <div (click)="getTasksbyStatus('complete')" class="circle-text">
-      <div>{{completedTasksCount}}</div>
+  <div class="col-xs-4">
+    <div (click)="getTasksbyStatus('complete')" class="status-task-count-container">
+      <div class="status-task-count status-task-count-complete">{{completedTasksCount}}</div>
+      <div class="status-task-count-complete">COMPLETE</div>
     </div>
   </div>
 </div>

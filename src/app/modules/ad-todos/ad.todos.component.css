@@ -1,0 +1,13 @@
+.user-name-list {
+    font-size: 30px;
+}
+
+.new-task-form-container {
+    margin: 0 auto;
+    max-width: 500px;
+    background-color:#FFFFFF;
+    margin-top: 15px;
+    padding: 30px 40px;
+    border: 1px solid #CECECE;
+    border-radius: 10px;
+}

@@ -1,24 +1,17 @@
-<div class="container">
-    <!--<h2>{{tasksList}} - {{tasksListStatus}}</h2>-->
-    <!--<button class="btn btn-default" (click)="addNewTask()">New Task</button>
-    <button class="btn btn-default" (click)="changeTaskStatusToInProgress()">In Progress</button>
-    <button class="btn btn-default" (click)="changeTaskStatusToComplete()">Complete</button>
-    -->
-    <!--https://www.developerhandbook.com/web-api/angular-2-server-side-paging-using-ng2-pagination/-->
-    <!--<div class="row" *ngFor="let task of tasksList | paginate: { itemsPerPage: 20, currentPage: p, totalItems: tasksList.length }">
-        <div class="col-sm-9">{{task.name}}</div>
-        <div class="col-sm-1"><button class="btn btn-md btn-primary" [disabled]="task.isInProgressBtnDisabled" (click)="changeTaskStatusToInProgress(task)">In Progress</button></div>
-        <div class="col-sm-1"><button class="btn btn-md btn-success" [disabled]="task.isCompleteBtnDisabled" (click)="changeTaskStatusToComplete(task)">Complete</button></div>
-    </div>-->
-
-    <hr class="task-list-hr"/>
-    <div *ngFor="let task of tasksList | paginate: { itemsPerPage: 20, currentPage: p, totalItems: tasksList.length }">
-        <div class="row">
-            <div class="col-sm-9"><span class="task-list-txt">{{task.name}}</span></div>
-            <div class="col-sm-1"><button class="btn btn-md btn-primary" [disabled]="task.isInProgressBtnDisabled" (click)="changeTaskStatusToInProgress(task)">In Progress</button></div>
-            <div class="col-sm-1"><button class="btn btn-md btn-success" [disabled]="task.isCompleteBtnDisabled" (click)="changeTaskStatusToComplete(task)">Complete</button></div> 
-        </div>
+<div>
+    <div *ngIf="tasksList.length; else noTasksSaved">
         <hr class="task-list-hr"/>
+        <div *ngFor="let task of tasksList | paginate: { itemsPerPage: 20, currentPage: p, totalItems: tasksList.length }">
+            <div class="row">
+                <div class="col-sm-9"><span class="task-list-txt">{{task.name}}</span></div>
+                <div class="col-sm-1"><button class="btn btn-md btn-primary" [disabled]="task.isInProgressBtnDisabled" (click)="changeTaskStatusToInProgress(task)">In Progress</button></div>
+                <div class="col-sm-1"><button class="btn btn-md btn-success" [disabled]="task.isCompleteBtnDisabled" (click)="changeTaskStatusToComplete(task)">Complete</button></div> 
+            </div>
+            <hr class="task-list-hr"/>
+        </div>
+        <pagination-controls (pageChange)="p = $event" directionLinks="true" ></pagination-controls>
     </div>
-    <pagination-controls (pageChange)="p = $event" directionLinks="true" ></pagination-controls>
+    <ng-template #noTasksSaved>
+        <div class="task-list-txt">You have not saved any tasks</div>
+    </ng-template>
 </div>

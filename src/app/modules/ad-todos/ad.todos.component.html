@@ -2,7 +2,15 @@
 <div class="container">
     <div><app-todos-num-tasks-by-status></app-todos-num-tasks-by-status></div>
     <div>
-        <h2>{{firstName}} {{lastName}}'s Tasks</h2>
+        <div class="row">
+            <div class="pull-left"><div class="user-name-list">{{firstName}} {{lastName}}'s Tasks</div></div>
+            <div class="pull-right">
+                <button (click)="showNewTaskForm = true" [disabled]="showNewTaskForm" class="btn btn-danger">Add New Task</button>
+            </div>
+        </div>
+        <div *ngIf="showNewTaskForm" class="new-task-form-container">
+            <app-todos-new-task></app-todos-new-task>
+        </div>
         <div class="task-list-container">
             <app-todos-tasks-list></app-todos-tasks-list>
         </div>

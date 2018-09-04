@@ -36,6 +36,8 @@
 .status-task-count-in-progress {
     color: #2b2ba5;
 }
+
+  
 .status-task-count-complete {
     color: #1c5f1c;
 }
@@ -45,11 +47,11 @@
     .status-task-count {
       font-size: 70px;
     }
-  }
+}
   
-  /* On screens that are 600px or less, set the background color to olive */
-  @media screen and (max-width: 600px) {
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 600px) {
     .status-task-count {
         font-size: 60px;
     }
-  }
+}

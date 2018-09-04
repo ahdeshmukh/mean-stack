@@ -1,0 +1,16 @@
+<form [formGroup]="rForm" (ngSubmit)="addNewTask(rForm.value)">
+  <div class="form-group">
+    <div class="form-alert text-danger" 
+        *ngIf="!rForm.controls['newTask'].valid && rForm.controls['newTask'].touched">
+        Email is required and should be in a valid format
+    </div>
+    <div class="input-group">
+      <span class="input-group-addon transparent"><span class="glyphicon glyphicon-envelope text-danger"></span></span>
+      <textarea rows="2" cols="10" class="form-control" formControlName="newTask" placeholder="New Task"></textarea>
+    </div>
+  </div>
+  <div>
+    <button type="submit" class="btn btn-danger" [disabled]="(!rForm.valid || addingNewTask)"><span>{{(loggingInProgress) ? "Adding...": "Add"}}</span></button>
+    <input type="button" value="Cancel" (click)="hideNewTaskForm()" type="submit" class="btn btn-danger" />
+  </div>
+</form>

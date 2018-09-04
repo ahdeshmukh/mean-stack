@@ -42,7 +42,7 @@ export class AdLoginComponent {
               private userService: UserService,
               private router: Router
             ) {
-    this.rForm = fb.group({
+    this.rForm = this.fb.group({
       'email' : [null, Validators.required],
       'password' : [null, Validators.required]
     });

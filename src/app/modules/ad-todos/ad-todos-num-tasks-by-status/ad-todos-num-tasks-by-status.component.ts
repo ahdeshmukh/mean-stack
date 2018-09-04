@@ -37,9 +37,6 @@ export class AdTodosNumTasksByStatusComponent {
           let newTaskStatusValues = this.newTaskStatusValues;
           let inProgressTaskStatusValues = this.inProgressTaskStatusValues;
           let completeTaskStatusValues = this.completeTaskStatusValues;
-
-          console.log();
-
           _.forEach(tasks, function(value) {
             switch(value.task_name) {
               case newTaskStatusValues:
@@ -106,6 +103,5 @@ export class AdTodosNumTasksByStatusComponent {
     return true;
     //this.adTodosService.getTodosListByStatus(status);
   }
-
 
 }

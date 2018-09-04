@@ -21,6 +21,10 @@ export class AdTodosService {
 
     private taskCountForCompletedJobs = new BehaviorSubject(null);
     taskCountForCompletedJobsObs = this.taskCountForCompletedJobs.asObservable();
+
+    private addNewTaskForm = new BehaviorSubject(null);
+    addNewTaskFormObs = this.addNewTaskForm.asObservable();
+
     
     constructor(private userService: UserService, 
       private adHttpService: AdHttpService, 
@@ -31,6 +35,7 @@ export class AdTodosService {
     }
 
     incrementTaskCountForNewJobs() {
+      console.log('Service Increment');
       this.taskCountForNewJobs.next(1);
     }
 
@@ -40,6 +45,10 @@ export class AdTodosService {
 
     incrementTaskCountForCompletedJobs(currentStatus) {
       this.taskCountForCompletedJobs.next(currentStatus);  
+    }
+
+    showAddNewTaskForm(showAddNewTaskForm:boolean) {
+      this.addNewTaskForm.next(showAddNewTaskForm);
     }
 
     updateUserTaskStatus(user_id, task):Observable<any> {//console.log('fsdfsdcccc');

@@ -48,26 +48,11 @@ export class UserService {
   }
 
   getUserTaskCountByStatus(uid): Observable<any> {
-    let user_id = uid;
-    if(!user_id) {
-      return this.getCurrentUser().map((currentUser: any) => {
-        if(currentUser) {
-          user_id = currentUser.getUserId();
-          if(!user_id) {
-            return this.utilityService.returnErrorObservable('User Id is not provided');
-          } else {
-            return this.adHttpService.get('get-users-tasks-count-by-status/'+user_id).map((result) => {
-              let tasksData = []
-              if(result && result.success && result.data) {
-                tasksData = result.data;
-              }
-              return tasksData;
-            });
-          }
-        }
-      });
-    } else {
-      return this.adHttpService.get('get-users-tasks-count-by-status/'+user_id).map((result) => {
+    let userId = uid;
+
+    const getUserTaskCountByStatusInner = (userId) => {
+      return this.adHttpService.get('get-users-tasks-count-by-status/'+userId)
+      .map((result) => {
         let tasksData = []
         if(result && result.success && result.data) {
           tasksData = result.data;
@@ -75,37 +60,55 @@ export class UserService {
         return tasksData;
       });
     }
-  }
-
-  getUserTasksByStatus(status: string, uid: string): Observable<any> {
-    let user_id = uid;
-    let task_status = (status) ? status : '';
     
-    if(!user_id) {
+    if(!userId) {
       return this.getCurrentUser().map((currentUser: any) => {
         if(currentUser) {
-          user_id = currentUser.getUserId();
-          if(!user_id) {
+          userId = currentUser.getUserId();
+          if(!userId) {
             return this.utilityService.returnErrorObservable('User Id is not provided');
           } else {
-            return this.adHttpService.get('get-users-tasks-list-by-status/'+user_id+'/'+task_status).map((result) => {
-              let tasksData = []
-              if(result && result.success && result.data) {
-                tasksData = result.data;
-              }
-              return tasksData;
-            });
+            return getUserTaskCountByStatusInner(userId);
           }
+        } else {
+          return this.utilityService.returnErrorObservable('Error in getting current user');
         }
       });
     } else {
-      return this.adHttpService.get('get-users-tasks-list-by-status/'+user_id+'/'+task_status).map((result) => {
+      return getUserTaskCountByStatusInner(userId);
+    }
+  }
+
+  getUserTasksByStatus(status: string, uid: string): Observable<any> {
+    let userId = uid;
+    let taskStatus = (status) ? status : '';
+
+    const getUserTasksByStatusInner = (userId, taskStatus) => {
+      return this.adHttpService.get('get-users-tasks-list-by-status/'+userId+'/'+taskStatus)
+      .map((result) => {
         let tasksData = []
         if(result && result.success && result.data) {
           tasksData = result.data;
         }
         return tasksData;
       });
+    }
+    
+    if(!userId) {
+      return this.getCurrentUser().map((currentUser: any) => {
+        if(currentUser) {
+          userId = currentUser.getUserId();
+          if(!userId) {
+            return this.utilityService.returnErrorObservable('User Id is not provided');
+          } else {
+            return getUserTasksByStatusInner(userId, taskStatus);
+          }
+        } else {
+          return this.utilityService.returnErrorObservable('Error in getting current user');
+        }
+      });
+    } else {
+      return getUserTasksByStatusInner(userId, taskStatus);
     }
   }
 

@@ -17,12 +17,14 @@ export class AdTodosNewTaskComponent {
 
   constructor(private fb: FormBuilder,private adTodosService: AdTodosService) {
     this.rForm = this.fb.group({
-      'newTask' : [null, Validators.required]
+      'task' : [null, Validators.required]
     });
   }
   
   addNewTask(addNewTaskForm) {
-    console.log(addNewTaskForm);
+    let task = {name: addNewTaskForm.task, status: 'new', created_time: Date.now()};
+    this.adTodosService.newTaskAdded(task); // todo: make an AJAX call to add task, add data to Mongo, 
+    // then invoke this.adTodosService.newTaskAdded(task); and hide the form
   }
 
   hideNewTaskForm() {

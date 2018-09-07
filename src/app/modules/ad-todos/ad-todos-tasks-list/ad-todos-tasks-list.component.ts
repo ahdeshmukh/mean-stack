@@ -17,6 +17,8 @@ export class AdTodosTasksListComponent {
   tasksListStatus: string;
   p: number = 1;
 
+  private _newTaskAddObs;
+
   constructor(private adTodosService: AdTodosService, 
     private userService: UserService, 
     private adToastrService: AdToastrService) {}
@@ -35,6 +37,16 @@ export class AdTodosTasksListComponent {
         this.adToastrService.error('Error in getting tasks');
       });
     });
+  
+    this._newTaskAddObs = this.adTodosService.newTaskAddObs.subscribe((task) => {
+      if(task) {
+        this.tasksList = [task, ...this.tasksList];
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this._newTaskAddObs.unsubscribe();
   }
 
   addNewTask() {
@@ -74,12 +86,12 @@ export class AdTodosTasksListComponent {
 
           let taskIndex = _.findIndex(this.tasksList, {"name":result.data.task.name, "created_time": result.data.task.created_time});
           this.tasksList[taskIndex] = newTask;
-          this.adToastrService.success('Successfully changed the status of '+ task.name);
+          this.adToastrService.success('Successfully changed the status of '+ task.name + ' to ' + newStatus);
         } else {
-          this.adToastrService.error('Not able to change status of '+ task.name);
+          this.adToastrService.error('Not able to change status of '+ task.name + ' to ' + newStatus);
         }
       }, (err) => {
-          this.adToastrService.error('Not able to change status of '+ task.name);
+          this.adToastrService.error('Not able to change status of '+ task.name + ' to ' + newStatus);
       });
     });
   }

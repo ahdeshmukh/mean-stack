@@ -25,6 +25,8 @@ export class AdTodosService {
     private addNewTaskForm = new BehaviorSubject(null);
     addNewTaskFormObs = this.addNewTaskForm.asObservable();
 
+    private newTaskAdd = new BehaviorSubject(null);
+    newTaskAddObs = this.newTaskAdd.asObservable();
     
     constructor(private userService: UserService, 
       private adHttpService: AdHttpService, 
@@ -35,7 +37,6 @@ export class AdTodosService {
     }
 
     incrementTaskCountForNewJobs() {
-      console.log('Service Increment');
       this.taskCountForNewJobs.next(1);
     }
 
@@ -49,6 +50,12 @@ export class AdTodosService {
 
     showAddNewTaskForm(showAddNewTaskForm:boolean) {
       this.addNewTaskForm.next(showAddNewTaskForm);
+    }
+
+    newTaskAdded(task:Object) {
+      //since it is a new task, the status will be "new"
+      //task['status'] = 'new';
+      this.newTaskAdd.next(task);
     }
 
     updateUserTaskStatus(user_id, task):Observable<any> {//console.log('fsdfsdcccc');

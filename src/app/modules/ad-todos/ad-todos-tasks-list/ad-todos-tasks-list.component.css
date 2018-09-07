@@ -35,4 +35,9 @@
 .task-list-txt {
     font-size: 20px;
     color: #555252;
+    padding: 10px 0;
+}
+
+.task-list-created-date {
+    padding: 5px 0;
 }

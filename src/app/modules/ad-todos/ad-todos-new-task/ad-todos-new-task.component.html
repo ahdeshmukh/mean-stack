@@ -10,7 +10,7 @@
     </div>
   </div>
   <div>
-    <button type="submit" class="btn btn-danger" [disabled]="(!rForm.valid || addingNewTask)"><span>{{(loggingInProgress) ? "Adding...": "Add"}}</span></button>
+    <button type="submit" class="btn btn-danger" [disabled]="(!rForm.valid || addingNewTask)"><span>{{(addingNewTask) ? "Adding...": "Add"}}</span></button>
     <input type="button" value="Cancel" (click)="hideNewTaskForm()" type="submit" class="btn btn-danger" />
   </div>
 </form>

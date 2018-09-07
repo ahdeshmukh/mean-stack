@@ -2,10 +2,10 @@
   <div class="form-group">
     <div class="form-alert text-danger" 
         *ngIf="!rForm.controls['newTask'].valid && rForm.controls['newTask'].touched">
-        Email is required and should be in a valid format
+        You should enter a new task
     </div>
     <div class="input-group">
-      <span class="input-group-addon transparent"><span class="glyphicon glyphicon-envelope text-danger"></span></span>
+      <span class="input-group-addon transparent"><span class="glyphicon glyphicon-pencil text-danger"></span></span>
       <textarea rows="2" cols="10" class="form-control" formControlName="newTask" placeholder="New Task"></textarea>
     </div>
   </div>

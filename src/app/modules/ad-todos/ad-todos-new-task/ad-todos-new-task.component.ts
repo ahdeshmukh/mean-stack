@@ -15,8 +15,7 @@ export class AdTodosNewTaskComponent {
   addingNewTask:boolean = false;
   rForm: FormGroup;
 
-  constructor(private fb: FormBuilder,
-              private adTodosService: AdTodosService) {
+  constructor(private fb: FormBuilder,private adTodosService: AdTodosService) {
     this.rForm = this.fb.group({
       'newTask' : [null, Validators.required]
     });
